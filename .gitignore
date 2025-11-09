@@ -1,0 +1,15 @@
+
+# Dependencies
+node_modules
+# Builds
+dist
+.netlify
+# Editor files
+.DS_Store
+.idea
+.vscode
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

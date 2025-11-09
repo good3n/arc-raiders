@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/fetch-metaforge-data.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "fetch-data": "node scripts/fetch-metaforge-data.mjs",
+    "test-filtering": "node scripts/test-filtering.mjs"
   },
   "dependencies": {
     "astro": "^4.15.0",

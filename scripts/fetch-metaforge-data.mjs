@@ -3,7 +3,7 @@ import path from "path";
 
 const BASE = "https://metaforge.app/api/arc-raiders";
 const ENDPOINTS = ["items", "arcs", "quests"]; // 👈 Traders removed
-const OUTPUT_DIR = path.resolve("src/data");
+const OUTPUT_DIR = path.resolve("public/data");
 
 // Small delay helper
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

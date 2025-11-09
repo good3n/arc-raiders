@@ -1,7 +1,9 @@
 
 ---
-const { title = 'ARC Raiders Explorer', description = 'Mini explorer for ARC Raiders data via MetaForge API' } = Astro.props;
+import '../styles/global.css';
+const { title = 'ARC Raiders Explorer', description = '' } = Astro.props;
 ---
+
 <html lang="en" class="h-full bg-slate-50">
   <head>
     <meta charset="utf-8" />
@@ -9,7 +11,6 @@ const { title = 'ARC Raiders Explorer', description = 'Mini explorer for ARC Rai
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" />
-      <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body class="min-h-screen text-slate-900 antialiased">
     <main class="mx-auto max-w-6xl px-4 py-6 md:py-10">

@@ -1,54 +1,66 @@
+// At top of file
+import fs from "fs";
+import path from "path";
+
+const CACHE_DIR = "/tmp/metaforge-cache";
+if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+
+// Helper functions
+const cacheFile = (url) =>
+  path.join(CACHE_DIR, Buffer.from(url).toString("base64") + ".json");
+
 export async function handler(event) {
   try {
-    // remove '/.netlify/functions/proxy' prefix safely
     const prefix = "/.netlify/functions/proxy";
     let pathAfter = event.path.replace(prefix, "");
     if (!pathAfter.startsWith("/")) pathAfter = "/" + pathAfter;
-
     const qs = event.rawQueryString ? `?${event.rawQueryString}` : "";
-
-    // ensure we’re targeting the real MetaForge endpoint
     const target = `https://metaforge.app${pathAfter}${qs}`;
-    console.log("Proxying:", target);
 
+    const cachePath = cacheFile(target);
+
+    // ✅ Serve cached file if it's under 1 hour old
+    if (fs.existsSync(cachePath)) {
+      const stats = fs.statSync(cachePath);
+      const ageMinutes = (Date.now() - stats.mtimeMs) / 60000;
+      if (ageMinutes < 60) {
+        const cached = fs.readFileSync(cachePath, "utf8");
+        return {
+          statusCode: 200,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            "X-Cache": "HIT",
+          },
+          body: cached,
+        };
+      }
+    }
+
+    // 🔄 Otherwise, fetch fresh data
     const upstream = await fetch(target, {
-      method: event.httpMethod,
-      headers: {
-        accept: event.headers["accept"] || "application/json",
-      },
-      body: ["POST", "PUT", "PATCH"].includes(event.httpMethod)
-        ? event.body
-        : undefined,
+      headers: { accept: "application/json" },
     });
+    const text = await upstream.text();
 
-    const contentType =
-      upstream.headers.get("content-type") || "application/json";
-    const bodyText = await upstream.text();
-
-    // if MetaForge returned HTML, include its first chars in the error
-    if (contentType.includes("text/html")) {
-      return {
-        statusCode: 502,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          error: "Bad gateway",
-          message: "Upstream returned HTML instead of JSON",
-          preview: bodyText.slice(0, 200),
-          target,
-        }),
-      };
+    // Only cache JSON responses
+    if (
+      (upstream.ok && text.trim().startsWith("{")) ||
+      text.trim().startsWith("[")
+    ) {
+      fs.writeFileSync(cachePath, text);
     }
 
     return {
       statusCode: upstream.status,
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Content-Type": contentType,
+        "Content-Type":
+          upstream.headers.get("content-type") || "application/json",
+        "Cache-Control": "public, max-age=3600",
+        "X-Cache": "MISS",
       },
-      body: bodyText,
+      body: text,
     };
   } catch (err) {
     return {

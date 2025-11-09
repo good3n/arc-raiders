@@ -2,12 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 type TabKey = 'items' | 'arcs' | 'quests' | 'traders' | 'maps';
 
-const ENDPOINTS: Record<TabKey, string> = {
-  items: '/api/arc-raiders/items',
-  arcs: '/api/arc-raiders/arcs',
-  quests: '/api/arc-raiders/quests',
-  traders: '/api/arc-raiders/traders',
-  maps: '/api/game-map-data',
+const ENDPOINTS = {
+  items: '/data/items.json',
+  arcs: '/data/arcs.json',
+  quests: '/data/quests.json',
+  traders: '/data/traders.json',
+  maps: '/api/game-map-data'
 };
 
 function classNames(...xs: Array<string | false | null | undefined>) {

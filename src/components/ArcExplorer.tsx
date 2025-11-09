@@ -6,9 +6,14 @@ const ENDPOINTS = {
   items: '/data/items.json',
   arcs: '/data/arcs.json',
   quests: '/data/quests.json',
-  traders: '/data/traders.json',
+  traders: '/data/traders.json', // Keep for future use
   maps: '/api/game-map-data'
 };
+
+// Cache version - increment this to bust cache when data structure changes
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `metaforge-cache-${CACHE_VERSION}`;
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 function classNames(...xs: Array<string | false | null | undefined>) {
   return xs.filter(Boolean).join(' ');
@@ -22,14 +27,14 @@ export default function ArcExplorer() {
   const [query, setQuery] = useState('');
   const [mapFilter, setMapFilter] = useState('');
 
-  // ✅ Auto-set default map when user switches to "maps" tab
+  // Auto-set default map when user switches to "maps" tab
   useEffect(() => {
     if (active === 'maps' && !mapFilter) {
-      setMapFilter('Dam'); // Default mapID required by MetaForge API
+      setMapFilter('Dam');
     }
   }, [active, mapFilter]);
 
-  // ✅ Use mapID instead of map in the query string
+  // Build the endpoint URL
   const endpoint = useMemo(() => {
     if (active === 'maps' && mapFilter) {
       const p = new URLSearchParams({ mapID: mapFilter });
@@ -38,64 +43,131 @@ export default function ArcExplorer() {
     return ENDPOINTS[active];
   }, [active, mapFilter]);
 
+  // Load data with caching
   useEffect(() => {
     let ignore = false;
-    const load = async () => {
+
+    const loadData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        // ✅ Try browser CacheStorage first
-        const cache = await caches.open("metaforge-cache-v1");
-        const cachedResponse = await cache.match(endpoint);
-        if (cachedResponse) {
-          const json = await cachedResponse.json();
-          if (!ignore) {
-            setData(json);
-            setLoading(false);
+        // For static JSON files, try localStorage first
+        if (!endpoint.includes('/api/')) {
+          const cacheKey = `${CACHE_NAME}-${endpoint}`;
+          const cached = localStorage.getItem(cacheKey);
+          
+          if (cached) {
+            try {
+              const { data: cachedData, timestamp } = JSON.parse(cached);
+              const age = Date.now() - timestamp;
+              
+              if (age < CACHE_DURATION) {
+                if (!ignore) {
+                  setData(cachedData);
+                  setLoading(false);
+                }
+                
+                // If cache is older than 1 day, refresh in background
+                if (age > 24 * 60 * 60 * 1000) {
+                  fetchAndCache(cacheKey, true);
+                }
+                return;
+              }
+            } catch (e) {
+              // Invalid cache data, remove it
+              localStorage.removeItem(cacheKey);
+            }
           }
-          // Optionally refresh in background if stale
-          const date = cachedResponse.headers.get("date");
-          const ageMs = date ? Date.now() - new Date(date).getTime() : 0;
-          if (ageMs > 6 * 24 * 60 * 60 * 1000) {
-            // older than ~6 days → refresh silently
-            fetchAndCache(cache);
-          }
-          return;
         }
 
-        // 🚀 If not cached, fetch & cache
-        await fetchAndCache(cache);
+        // Fetch fresh data
+        await fetchAndCache(endpoint.includes('/api/') ? null : `${CACHE_NAME}-${endpoint}`, false);
       } catch (e: any) {
-        if (!ignore) setError(String(e));
+        if (!ignore) {
+          setError(e.message || 'Failed to load data');
+        }
       } finally {
-        if (!ignore) setLoading(false);
+        if (!ignore) {
+          setLoading(false);
+        }
       }
     };
 
-    const fetchAndCache = async (cache: Cache) => {
-      const res = await fetch(endpoint, { headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-      const cloned = res.clone();
-      await cache.put(endpoint, cloned);
-      const json = await res.json();
-      if (!ignore) setData(json);
+    const fetchAndCache = async (cacheKey: string | null, background: boolean) => {
+      try {
+        const res = await fetch(endpoint, { 
+          headers: { Accept: 'application/json' },
+          // Add cache control for better browser caching
+          cache: 'default'
+        });
+        
+        if (!res.ok) {
+          throw new Error(`${res.status} ${res.statusText}`);
+        }
+
+        const json = await res.json();
+        
+        if (!ignore || background) {
+          // Store in localStorage for static files
+          if (cacheKey) {
+            try {
+              localStorage.setItem(cacheKey, JSON.stringify({
+                data: json,
+                timestamp: Date.now()
+              }));
+            } catch (e) {
+              // localStorage might be full, clear old data
+              clearOldCache();
+              try {
+                localStorage.setItem(cacheKey, JSON.stringify({
+                  data: json,
+                  timestamp: Date.now()
+                }));
+              } catch (e2) {
+                console.warn('Failed to cache data:', e2);
+              }
+            }
+          }
+          
+          if (!ignore && !background) {
+            setData(json);
+          }
+        }
+      } catch (e: any) {
+        if (!background) {
+          throw e;
+        }
+      }
     };
 
-    load();
+    loadData();
+    
     return () => {
       ignore = true;
     };
   }, [endpoint]);
 
+  // Clear old cache entries
+  const clearOldCache = () => {
+    const keysToRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('metaforge-cache-') && !key.startsWith(CACHE_NAME)) {
+        keysToRemove.push(key);
+      }
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+  };
+
+  // Filter data based on search query
   const filtered = useMemo(() => {
-    // Normalize response: ensure we always end up with an array
     let list: any[] = [];
   
     if (Array.isArray(data)) {
       list = data;
     } else if (data && typeof data === "object") {
-      // Some MetaForge endpoints return an object with nested arrays
+      // Handle different API response structures
       const possibleArrays = [
         (data as any).data,
         (data as any).items,
@@ -109,111 +181,175 @@ export default function ArcExplorer() {
     if (!query) return list;
   
     const q = query.toLowerCase();
-    return list.filter((x) =>
-      JSON.stringify(x).toLowerCase().includes(q)
+    return list.filter((item) => {
+      // Search in important fields
+      const searchable = [
+        item.name,
+        item.description,
+        item.item_type,
+        item.rarity,
+        item.workbench,
+        item.flavor_text,
+        item.subcategory,
+        item.ammo_type
+      ].filter(Boolean).join(' ').toLowerCase();
+      
+      return searchable.includes(q);
+    });
+  }, [data, query]);
+
+  // Render item based on type
+  const renderItem = (item: any, index: number) => {
+    // Skip rendering Misc items (should already be filtered, but double-check)
+    if (item.item_type === "Misc") return null;
+
+    return (
+      <div
+        key={item.id || index}
+        className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+      >
+        <div className="flex items-start gap-4">
+          {item.icon && (
+            <img
+              src={item.icon}
+              alt={item.name || 'Icon'}
+              className="w-16 h-16 object-cover rounded"
+              loading="lazy"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          )}
+          <div className="flex-1">
+            <h3 className="font-semibold text-lg">{item.name || 'Unnamed'}</h3>
+            {item.description && (
+              <p className="text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
+            )}
+            <div className="mt-2 flex flex-wrap gap-2 text-sm">
+              {item.item_type && (
+                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded">
+                  {item.item_type}
+                </span>
+              )}
+              {item.rarity && (
+                <span className={classNames(
+                  'px-2 py-1 rounded',
+                  item.rarity === 'Common' && 'bg-gray-200 dark:bg-gray-700',
+                  item.rarity === 'Uncommon' && 'bg-green-100 dark:bg-green-900',
+                  item.rarity === 'Rare' && 'bg-blue-100 dark:bg-blue-900',
+                  item.rarity === 'Epic' && 'bg-purple-100 dark:bg-purple-900',
+                  item.rarity === 'Legendary' && 'bg-yellow-100 dark:bg-yellow-900'
+                )}>
+                  {item.rarity}
+                </span>
+              )}
+              {item.value > 0 && (
+                <span className="px-2 py-1 bg-green-100 dark:bg-green-900 rounded">
+                  Value: {item.value}
+                </span>
+              )}
+              {item.workbench && (
+                <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded">
+                  {item.workbench}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     );
-  }, [data, query]);  
+  };
 
   return (
-    <div>
+    <div className="space-y-4">
       {/* Tabs */}
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        {(['items', 'arcs', 'quests', 'traders', 'maps'] as TabKey[]).map((tab) => (
+      <div className="flex flex-wrap items-center gap-2">
+        {(['items', 'arcs', 'quests'] as TabKey[]).map((tab) => (
           <button
             key={tab}
             onClick={() => setActive(tab)}
             className={classNames(
-              'px-3 py-2 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap',
-              active === tab ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200'
+              'px-4 py-2 rounded-xl text-sm font-medium transition-all',
+              active === tab
+                ? 'bg-blue-600 text-white shadow-md'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
             )}
           >
-            {tab.toUpperCase()}
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
+        <div className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+          Note: "traders" and "maps" tabs coming soon
+        </div>
       </div>
 
-      {/* Controls */}
-      <section className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-        <label className="block">
-          <span className="block text-xs font-semibold text-slate-500">Search (client-side)</span>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            type="search"
-            placeholder="Type to filter results…"
-            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
-          />
-        </label>
-
-        <label className="block" hidden={active !== 'maps'}>
-          <span className="block text-xs font-semibold text-slate-500">Map</span>
-          <select
-            value={mapFilter}
-            onChange={(e) => setMapFilter(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+      {/* Search */}
+      <div className="relative">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={`Search ${active}...`}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+        {query && (
+          <button
+            onClick={() => setQuery('')}
+            className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
           >
-            <option value="">(All available)</option>
-            <option>Dam</option>
-            <option>Spaceport</option>
-            <option>Buried City</option>
-            <option>Blue Gate</option>
-          </select>
-        </label>
-      </section>
-
-      {/* Status */}
-      <div className="mb-4 text-xs text-slate-600">
-        {loading
-          ? `Loading ${endpoint}…`
-          : error
-          ? `Error: ${error}`
-          : `Loaded ${filtered?.length ?? 0} records`}
+            ✕
+          </button>
+        )}
       </div>
+
+      {/* Map Filter (for future use) */}
+      {active === 'maps' && (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-lg">
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">
+            Maps functionality coming soon!
+          </p>
+        </div>
+      )}
 
       {/* Results */}
-      <section className="grid gap-3">
-        {filtered && filtered.length > 0 ? (
-          filtered.slice(0, 200).map((row: any, i: number) => (
-            <article key={i} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
-              <CardRow row={row} index={i} />
-            </article>
-          ))
-        ) : (
-          <div className="text-sm text-slate-500">
-            {active === 'maps'
-              ? 'Select a map from the dropdown above to load data.'
-              : 'No results.'}
+      <div className="space-y-4">
+        {loading && (
+          <div className="text-center py-8">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">Loading {active}...</p>
           </div>
         )}
-      </section>
-    </div>
-  );
-}
 
-function CardRow({ row, index }: { row: any; index: number }) {
-  const [open, setOpen] = useState(false);
-  const title = row?.name || row?.title || row?.displayName || row?.id || `Row ${index + 1}`;
-  const subtitle = row?.rarity || row?.type || row?.category || row?.tier || row?.map || '';
+        {error && !loading && (
+          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+            <p className="text-red-800 dark:text-red-200">Error: {error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-2 text-sm text-red-600 dark:text-red-400 underline"
+            >
+              Retry
+            </button>
+          </div>
+        )}
 
-  return (
-    <div>
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="font-semibold">{String(title)}</div>
-          {subtitle ? <div className="text-xs text-slate-500">{String(subtitle)}</div> : null}
-        </div>
-        <button
-          onClick={() => setOpen((s) => !s)}
-          className="inline-flex items-center gap-2 rounded-2xl px-3 py-1.5 text-xs border border-slate-200"
-        >
-          {open ? 'Hide' : 'Details'}
-        </button>
+        {!loading && !error && filtered.length === 0 && (
+          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+            {query ? `No ${active} found matching "${query}"` : `No ${active} available`}
+          </div>
+        )}
+
+        {!loading && !error && filtered.length > 0 && (
+          <>
+            <div className="text-sm text-gray-600 dark:text-gray-400">
+              Showing {filtered.length} {active}
+              {query && ` matching "${query}"`}
+            </div>
+            <div className="space-y-3">
+              {filtered.map((item, idx) => renderItem(item, idx))}
+            </div>
+          </>
+        )}
       </div>
-      {open ? (
-        <pre className="mt-3 text-xs overflow-auto bg-slate-50 border border-slate-200 rounded-xl p-3">
-{JSON.stringify(row, null, 2)}
-        </pre>
-      ) : null}
     </div>
   );
 }

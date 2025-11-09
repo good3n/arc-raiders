@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from 'react';
 
 type TabKey = 'items' | 'arcs' | 'quests' | 'traders' | 'maps';
@@ -22,17 +23,9 @@ export default function ArcExplorer() {
   const [query, setQuery] = useState('');
   const [mapFilter, setMapFilter] = useState('');
 
-  // ✅ Auto-set default map when user switches to "maps" tab
-  useEffect(() => {
-    if (active === 'maps' && !mapFilter) {
-      setMapFilter('Dam'); // Default mapID required by MetaForge API
-    }
-  }, [active, mapFilter]);
-
-  // ✅ Use mapID instead of map in the query string
   const endpoint = useMemo(() => {
     if (active === 'maps' && mapFilter) {
-      const p = new URLSearchParams({ mapID: mapFilter });
+      const p = new URLSearchParams({ map: mapFilter });
       return `${ENDPOINTS[active]}?${p.toString()}`;
     }
     return ENDPOINTS[active];
@@ -43,7 +36,7 @@ export default function ArcExplorer() {
     const load = async () => {
       setLoading(true);
       setError(null);
-
+  
       try {
         // ✅ Try browser CacheStorage first
         const cache = await caches.open("metaforge-cache-v1");
@@ -63,7 +56,7 @@ export default function ArcExplorer() {
           }
           return;
         }
-
+  
         // 🚀 If not cached, fetch & cache
         await fetchAndCache(cache);
       } catch (e: any) {
@@ -72,7 +65,7 @@ export default function ArcExplorer() {
         if (!ignore) setLoading(false);
       }
     };
-
+  
     const fetchAndCache = async (cache: Cache) => {
       const res = await fetch(endpoint, { headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
@@ -81,7 +74,7 @@ export default function ArcExplorer() {
       const json = await res.json();
       if (!ignore) setData(json);
     };
-
+  
     load();
     return () => {
       ignore = true;
@@ -98,7 +91,7 @@ export default function ArcExplorer() {
     <div>
       {/* Tabs */}
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        {(['items', 'arcs', 'quests', 'traders', 'maps'] as TabKey[]).map((tab) => (
+        {(['items','arcs','quests','traders','maps'] as TabKey[]).map((tab) => (
           <button
             key={tab}
             onClick={() => setActive(tab)}
@@ -143,27 +136,17 @@ export default function ArcExplorer() {
 
       {/* Status */}
       <div className="mb-4 text-xs text-slate-600">
-        {loading
-          ? `Loading ${endpoint}…`
-          : error
-          ? `Error: ${error}`
-          : `Loaded ${filtered?.length ?? 0} records`}
+        {loading ? `Loading ${endpoint}…` : error ? `Error: ${error}` : `Loaded ${filtered?.length ?? 0} records`}
       </div>
 
       {/* Results */}
       <section className="grid gap-3">
-        {filtered && filtered.length > 0 ? (
-          filtered.slice(0, 200).map((row: any, i: number) => (
-            <article key={i} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
-              <CardRow row={row} index={i} />
-            </article>
-          ))
-        ) : (
-          <div className="text-sm text-slate-500">
-            {active === 'maps'
-              ? 'Select a map from the dropdown above to load data.'
-              : 'No results.'}
-          </div>
+        {filtered && filtered.length > 0 ? filtered.slice(0, 200).map((row: any, i: number) => (
+          <article key={i} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
+            <CardRow row={row} index={i} />
+          </article>
+        )) : (
+          <div className="text-sm text-slate-500">No results.</div>
         )}
       </section>
     </div>

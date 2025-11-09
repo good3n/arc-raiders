@@ -229,7 +229,6 @@ export default function ArcExplorer() {
     if (item.item_type === "Misc") return null;
 
     const isExpanded = showDetails[item.id || index];
-    const hasStats = item.stat_block && Object.values(item.stat_block).some((v: any) => v && v !== 0);
 
     return (
       <div
@@ -283,7 +282,7 @@ export default function ArcExplorer() {
                   </span>
                 )}
               </div>
-              {hasStats && (
+              {(
                 <button
                   onClick={() => toggleDetails(item.id || index)}
                   className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
@@ -294,21 +293,11 @@ export default function ArcExplorer() {
             </div>
           </div>
           
-          {isExpanded && hasStats && (
+          {isExpanded && (
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-sm">
-                {Object.entries(item.stat_block)
-                  .filter(([_, value]: [string, any]) => value && value !== 0)
-                  .map(([key, value]: [string, any]) => (
-                    <div key={key} className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400 capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}:
-                      </span>
-                      <span className="font-medium">{value}</span>
-                    </div>
-                  ))
-                }
-              </div>
+              <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-xs">
+                {JSON.stringify(item, null, 2)}
+              </pre>
             </div>
           )}
         </div>

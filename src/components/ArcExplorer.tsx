@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import ArcCard from './ArcCard';
 
 type TabKey = 'items' | 'arcs' | 'quests' | 'traders' | 'maps';
 type ItemTabKey = 'all' | string;
@@ -222,6 +223,12 @@ export default function ArcExplorer() {
     // Skip rendering Misc items (should already be filtered, but double-check)
     if (item.item_type === "Misc") return null;
 
+    // Special rendering for ARCs
+    if (active === 'arcs') {
+      return <ArcCard key={item.id || index} arc={item} />;
+    }
+
+    // Default rendering for other types
     return (
       <article key={item.id || index} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
         <CardRow row={item} index={index} />

@@ -28,7 +28,6 @@ export default function ArcExplorer() {
   const [query, setQuery] = useState('');
   const [mapFilter, setMapFilter] = useState('');
   const [itemTypeTab, setItemTypeTab] = useState<ItemTabKey>('all');
-  const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>({});
 
   // Auto-set default map when user switches to "maps" tab
   useEffect(() => {
@@ -175,11 +174,6 @@ export default function ArcExplorer() {
     return Array.from(types).sort();
   }, [data, active]);
 
-  // Toggle details
-  const toggleDetails = (id: string) => {
-    setShowDetails(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
   // Filter data based on search query and item type tab
   const filtered = useMemo(() => {
     let list: any[] = [];
@@ -228,87 +222,17 @@ export default function ArcExplorer() {
     // Skip rendering Misc items (should already be filtered, but double-check)
     if (item.item_type === "Misc") return null;
 
-    const isExpanded = showDetails[item.id || index];
-
     return (
-      <div
-        key={item.id || index}
-        className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-      >
-        <div className="p-4">
-          <div className="flex items-start gap-4">
-            {item.icon && (
-              <img
-                src={item.icon}
-                alt={item.name || 'Icon'}
-                className="w-16 h-16 object-cover rounded"
-                loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
-            )}
-            <div className="flex-1">
-              <h3 className="font-semibold text-lg">{item.name || 'Unnamed'}</h3>
-              {item.description && (
-                <p className="text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
-              )}
-              <div className="mt-2 flex flex-wrap gap-2 text-sm">
-                {item.item_type && (
-                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded">
-                    {item.item_type}
-                  </span>
-                )}
-                {item.rarity && (
-                  <span className={classNames(
-                    'px-2 py-1 rounded',
-                    item.rarity === 'Common' && 'bg-gray-200 dark:bg-gray-700',
-                    item.rarity === 'Uncommon' && 'bg-green-100 dark:bg-green-900',
-                    item.rarity === 'Rare' && 'bg-blue-100 dark:bg-blue-900',
-                    item.rarity === 'Epic' && 'bg-purple-100 dark:bg-purple-900',
-                    item.rarity === 'Legendary' && 'bg-yellow-100 dark:bg-yellow-900'
-                  )}>
-                    {item.rarity}
-                  </span>
-                )}
-                {item.value > 0 && (
-                  <span className="px-2 py-1 bg-green-100 dark:bg-green-900 rounded">
-                    Value: {item.value}
-                  </span>
-                )}
-                {item.workbench && (
-                  <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded">
-                    {item.workbench}
-                  </span>
-                )}
-              </div>
-              {(
-                <button
-                  onClick={() => toggleDetails(item.id || index)}
-                  className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  {isExpanded ? 'Hide' : 'Show'} Details
-                </button>
-              )}
-            </div>
-          </div>
-          
-          {isExpanded && (
-            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-xs">
-                {JSON.stringify(item, null, 2)}
-              </pre>
-            </div>
-          )}
-        </div>
-      </div>
+      <article key={item.id || index} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
+        <CardRow row={item} index={index} />
+      </article>
     );
   };
 
   return (
-    <div className="space-y-4">
+    <div>
       {/* Tabs */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
         {(['items', 'arcs', 'quests'] as TabKey[]).map((tab) => (
           <button
             key={tab}
@@ -317,20 +241,20 @@ export default function ArcExplorer() {
               if (tab === 'items') setItemTypeTab('all');
             }}
             className={classNames(
-              'px-4 py-2 rounded-xl text-sm font-medium transition-all',
+              'px-3 py-2 rounded-xl text-sm font-medium cursor-pointer whitespace-nowrap',
               active === tab
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                ? 'bg-slate-900 text-white'
+                : 'bg-white border border-slate-200'
             )}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {tab.toUpperCase()}
           </button>
         ))}
       </div>
 
       {/* Item Type Tabs */}
       {active === 'items' && itemTypes.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-4">
           <button
             onClick={() => setItemTypeTab('all')}
             className={classNames(
@@ -359,73 +283,77 @@ export default function ArcExplorer() {
         </div>
       )}
 
-      {/* Search */}
-      <div className="relative">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={`Search ${active}...`}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        {query && (
-          <button
-            onClick={() => setQuery('')}
-            className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+      {/* Controls */}
+      <section className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+        <label className="block">
+          <span className="block text-xs font-semibold text-slate-500">Search (client-side)</span>
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            type="search"
+            placeholder="Type to filter results…"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+          />
+        </label>
+        <label className="block" hidden={active !== 'maps'}>
+          <span className="block text-xs font-semibold text-slate-500">Map</span>
+          <select
+            value={mapFilter}
+            onChange={(e) => setMapFilter(e.target.value)}
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
           >
-            ✕
-          </button>
-        )}
-      </div>
+            <option value="">(All available)</option>
+            <option>Dam</option>
+            <option>Spaceport</option>
+            <option>Buried City</option>
+            <option>Blue Gate</option>
+          </select>
+        </label>
+      </section>
 
-      {/* Map Filter (for future use) */}
-      {active === 'maps' && (
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-lg">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200">
-            Maps functionality coming soon!
-          </p>
-        </div>
-      )}
+      {/* Status */}
+      <div className="mb-4 text-xs text-slate-600">
+        {loading ? `Loading ${endpoint}…` : error ? `Error: ${error}` : `Loaded ${filtered?.length ?? 0} records`}
+      </div>
 
       {/* Results */}
-      <div className="space-y-4">
-        {loading && (
-          <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">Loading {active}...</p>
+      <section className="grid gap-3">
+        {filtered && filtered.length > 0 ? (
+          filtered.slice(0, 200).map((row: any, i: number) => renderItem(row, i))
+        ) : (
+          <div className="text-sm text-slate-500">
+            {active === 'maps' ? 'Select a map from the dropdown above to load data.' : 'No results.'}
           </div>
         )}
+      </section>
+    </div>
+  );
+}
 
-        {error && !loading && (
-          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
-            <p className="text-red-800 dark:text-red-200">Error: {error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-2 text-sm text-red-600 dark:text-red-400 underline"
-            >
-              Retry
-            </button>
-          </div>
-        )}
+function CardRow({ row, index }: { row: any; index: number }) {
+  const [open, setOpen] = useState(false);
+  const title = row?.name || row?.title || row?.displayName || row?.id || `Row ${index + 1}`;
+  const subtitle = row?.rarity || row?.type || row?.category || row?.tier || row?.map || '';
 
-        {!loading && !error && filtered.length === 0 && (
-          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-            {query ? `No ${active} found matching "${query}"` : `No ${active} available`}
-          </div>
-        )}
-
-        {!loading && !error && filtered.length > 0 && (
-          <>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              Showing {filtered.length} {active}
-              {query && ` matching "${query}"`}
-            </div>
-            <div className="space-y-3">
-              {filtered.map((item, idx) => renderItem(item, idx))}
-            </div>
-          </>
-        )}
+  return (
+    <div>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="font-semibold">{String(title)}</div>
+          {subtitle ? <div className="text-xs text-slate-500">{String(subtitle)}</div> : null}
+        </div>
+        <button
+          onClick={() => setOpen((s) => !s)}
+          className="inline-flex items-center gap-2 rounded-2xl px-3 py-1.5 text-xs border border-slate-200"
+        >
+          {open ? 'Hide' : 'Details'}
+        </button>
       </div>
+      {open ? (
+        <pre className="mt-3 text-xs overflow-auto bg-slate-50 border border-slate-200 rounded-xl p-3">
+          {JSON.stringify(row, null, 2)}
+        </pre>
+      ) : null}
     </div>
   );
 }

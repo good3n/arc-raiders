@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 type TabKey = 'items' | 'arcs' | 'quests' | 'traders' | 'maps';
+type ItemTabKey = 'all' | string;
 
 const ENDPOINTS = {
   items: '/data/items.json',
@@ -26,6 +27,8 @@ export default function ArcExplorer() {
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const [mapFilter, setMapFilter] = useState('');
+  const [itemTypeTab, setItemTypeTab] = useState<ItemTabKey>('all');
+  const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>({});
 
   // Auto-set default map when user switches to "maps" tab
   useEffect(() => {
@@ -160,7 +163,24 @@ export default function ArcExplorer() {
     keysToRemove.forEach(key => localStorage.removeItem(key));
   };
 
-  // Filter data based on search query
+  // Get unique item types
+  const itemTypes = useMemo(() => {
+    if (active !== 'items') return [];
+    const types = new Set<string>();
+    data.forEach(item => {
+      if (item.item_type && item.item_type !== 'Misc') {
+        types.add(item.item_type);
+      }
+    });
+    return Array.from(types).sort();
+  }, [data, active]);
+
+  // Toggle details
+  const toggleDetails = (id: string) => {
+    setShowDetails(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  // Filter data based on search query and item type tab
   const filtered = useMemo(() => {
     let list: any[] = [];
   
@@ -176,6 +196,11 @@ export default function ArcExplorer() {
       ];
       const found = possibleArrays.find((v) => Array.isArray(v));
       if (found) list = found;
+    }
+  
+    // Filter by item type if on items tab
+    if (active === 'items' && itemTypeTab !== 'all') {
+      list = list.filter(item => item.item_type === itemTypeTab);
     }
   
     if (!query) return list;
@@ -196,65 +221,96 @@ export default function ArcExplorer() {
       
       return searchable.includes(q);
     });
-  }, [data, query]);
+  }, [data, query, active, itemTypeTab]);
 
   // Render item based on type
   const renderItem = (item: any, index: number) => {
     // Skip rendering Misc items (should already be filtered, but double-check)
     if (item.item_type === "Misc") return null;
 
+    const isExpanded = showDetails[item.id || index];
+    const hasStats = item.stat_block && Object.values(item.stat_block).some((v: any) => v && v !== 0);
+
     return (
       <div
         key={item.id || index}
-        className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+        className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
       >
-        <div className="flex items-start gap-4">
-          {item.icon && (
-            <img
-              src={item.icon}
-              alt={item.name || 'Icon'}
-              className="w-16 h-16 object-cover rounded"
-              loading="lazy"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
-            />
-          )}
-          <div className="flex-1">
-            <h3 className="font-semibold text-lg">{item.name || 'Unnamed'}</h3>
-            {item.description && (
-              <p className="text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
+        <div className="p-4">
+          <div className="flex items-start gap-4">
+            {item.icon && (
+              <img
+                src={item.icon}
+                alt={item.name || 'Icon'}
+                className="w-16 h-16 object-cover rounded"
+                loading="lazy"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
             )}
-            <div className="mt-2 flex flex-wrap gap-2 text-sm">
-              {item.item_type && (
-                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded">
-                  {item.item_type}
-                </span>
+            <div className="flex-1">
+              <h3 className="font-semibold text-lg">{item.name || 'Unnamed'}</h3>
+              {item.description && (
+                <p className="text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
               )}
-              {item.rarity && (
-                <span className={classNames(
-                  'px-2 py-1 rounded',
-                  item.rarity === 'Common' && 'bg-gray-200 dark:bg-gray-700',
-                  item.rarity === 'Uncommon' && 'bg-green-100 dark:bg-green-900',
-                  item.rarity === 'Rare' && 'bg-blue-100 dark:bg-blue-900',
-                  item.rarity === 'Epic' && 'bg-purple-100 dark:bg-purple-900',
-                  item.rarity === 'Legendary' && 'bg-yellow-100 dark:bg-yellow-900'
-                )}>
-                  {item.rarity}
-                </span>
-              )}
-              {item.value > 0 && (
-                <span className="px-2 py-1 bg-green-100 dark:bg-green-900 rounded">
-                  Value: {item.value}
-                </span>
-              )}
-              {item.workbench && (
-                <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded">
-                  {item.workbench}
-                </span>
+              <div className="mt-2 flex flex-wrap gap-2 text-sm">
+                {item.item_type && (
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded">
+                    {item.item_type}
+                  </span>
+                )}
+                {item.rarity && (
+                  <span className={classNames(
+                    'px-2 py-1 rounded',
+                    item.rarity === 'Common' && 'bg-gray-200 dark:bg-gray-700',
+                    item.rarity === 'Uncommon' && 'bg-green-100 dark:bg-green-900',
+                    item.rarity === 'Rare' && 'bg-blue-100 dark:bg-blue-900',
+                    item.rarity === 'Epic' && 'bg-purple-100 dark:bg-purple-900',
+                    item.rarity === 'Legendary' && 'bg-yellow-100 dark:bg-yellow-900'
+                  )}>
+                    {item.rarity}
+                  </span>
+                )}
+                {item.value > 0 && (
+                  <span className="px-2 py-1 bg-green-100 dark:bg-green-900 rounded">
+                    Value: {item.value}
+                  </span>
+                )}
+                {item.workbench && (
+                  <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded">
+                    {item.workbench}
+                  </span>
+                )}
+              </div>
+              {hasStats && (
+                <button
+                  onClick={() => toggleDetails(item.id || index)}
+                  className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {isExpanded ? 'Hide' : 'Show'} Details
+                </button>
               )}
             </div>
           </div>
+          
+          {isExpanded && hasStats && (
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-sm">
+                {Object.entries(item.stat_block)
+                  .filter(([_, value]: [string, any]) => value && value !== 0)
+                  .map(([key, value]: [string, any]) => (
+                    <div key={key} className="flex justify-between">
+                      <span className="text-gray-600 dark:text-gray-400 capitalize">
+                        {key.replace(/([A-Z])/g, ' $1').trim()}:
+                      </span>
+                      <span className="font-medium">{value}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -267,7 +323,10 @@ export default function ArcExplorer() {
         {(['items', 'arcs', 'quests'] as TabKey[]).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActive(tab)}
+            onClick={() => {
+              setActive(tab);
+              if (tab === 'items') setItemTypeTab('all');
+            }}
             className={classNames(
               'px-4 py-2 rounded-xl text-sm font-medium transition-all',
               active === tab
@@ -278,10 +337,38 @@ export default function ArcExplorer() {
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
-        <div className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
-          Note: "traders" and "maps" tabs coming soon
-        </div>
       </div>
+
+      {/* Item Type Tabs */}
+      {active === 'items' && itemTypes.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setItemTypeTab('all')}
+            className={classNames(
+              'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
+              itemTypeTab === 'all'
+                ? 'bg-gray-700 text-white'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+            )}
+          >
+            All
+          </button>
+          {itemTypes.map((type) => (
+            <button
+              key={type}
+              onClick={() => setItemTypeTab(type)}
+              className={classNames(
+                'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
+                itemTypeTab === type
+                  ? 'bg-gray-700 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+              )}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Search */}
       <div className="relative">

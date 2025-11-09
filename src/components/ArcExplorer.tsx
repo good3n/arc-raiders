@@ -33,22 +33,52 @@ export default function ArcExplorer() {
 
   useEffect(() => {
     let ignore = false;
-    (async () => {
+    const load = async () => {
       setLoading(true);
       setError(null);
+  
       try {
-        const res = await fetch(endpoint, { headers: { Accept: 'application/json' } });
-        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        const json = await res.json();
-        const arr = Array.isArray(json) ? json : (json?.data || json?.items || json?.arcs || json?.quests || json?.traders || json?.points || []);
-        if (!ignore) setData(arr);
+        // ✅ Try browser CacheStorage first
+        const cache = await caches.open("metaforge-cache-v1");
+        const cachedResponse = await cache.match(endpoint);
+        if (cachedResponse) {
+          const json = await cachedResponse.json();
+          if (!ignore) {
+            setData(json);
+            setLoading(false);
+          }
+          // Optionally refresh in background if stale
+          const date = cachedResponse.headers.get("date");
+          const ageMs = date ? Date.now() - new Date(date).getTime() : 0;
+          if (ageMs > 6 * 24 * 60 * 60 * 1000) {
+            // older than ~6 days → refresh silently
+            fetchAndCache(cache);
+          }
+          return;
+        }
+  
+        // 🚀 If not cached, fetch & cache
+        await fetchAndCache(cache);
       } catch (e: any) {
         if (!ignore) setError(String(e));
       } finally {
         if (!ignore) setLoading(false);
       }
-    })();
-    return () => { ignore = true; };
+    };
+  
+    const fetchAndCache = async (cache: Cache) => {
+      const res = await fetch(endpoint, { headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      const cloned = res.clone();
+      await cache.put(endpoint, cloned);
+      const json = await res.json();
+      if (!ignore) setData(json);
+    };
+  
+    load();
+    return () => {
+      ignore = true;
+    };
   }, [endpoint]);
 
   const filtered = useMemo(() => {

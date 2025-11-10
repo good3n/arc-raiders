@@ -41,7 +41,7 @@ export default function ArcCard({ arc }: ArcCardProps) {
                 loading="lazy"
               />
             )}
-            <h2 className="text-5xl font-black text-white uppercase tracking-wider">
+            <h2 className="text-5xl font-black text-light uppercase tracking-wider">
               {arc.name}
             </h2>
           </div>
@@ -50,7 +50,7 @@ export default function ArcCard({ arc }: ArcCardProps) {
       
       {/* Description section */}
       <div className="px-6 pb-6">
-        <p className="text-gray-300 leading-relaxed">
+        <p className="leading-relaxed">
           {arc.description}
         </p>
       </div>

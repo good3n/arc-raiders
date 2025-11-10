@@ -1734,10 +1734,23 @@
     "updated_at": "2025-11-02T22:59:56.776247+00:00",
     "locations": [],
     "marker_category": null,
-    "required_items": [],
+    "required_items": [
+      {
+        "id": "560a9deb-a8c7-4960-a300-a5a0022c4e7b",
+        "item": {
+          "id": "leaper-pulse-unit",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/leaper-pulse-unit.webp",
+          "name": "Leaper Pulse Unit",
+          "rarity": "Epic",
+          "item_type": "Throwable"
+        },
+        "item_id": "leaper-pulse-unit",
+        "quantity": 1
+      }
+    ],
     "rewards": [
       {
-        "id": "b907281a-f19a-4d2d-8a9b-ae0a28ad617b",
+        "id": "c73bafcd-f0d4-4e32-a716-e6177d358ab7",
         "item": {
           "id": "radio-renegade-outfit",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/radio-renegade-outfit.webp",
@@ -1749,7 +1762,7 @@
         "quantity": "1"
       },
       {
-        "id": "292a99e1-65d5-4ad7-b55c-bcab653f064d",
+        "id": "aecc532e-788a-424f-aeaf-87f40c293f6c",
         "item": {
           "id": "burgerboy-backpack-charm",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/burgerboy-backpack-charm.webp",
@@ -1761,7 +1774,7 @@
         "quantity": "1"
       },
       {
-        "id": "040d2570-8c99-4898-9d58-79b043dad742",
+        "id": "52016cce-923c-4209-b393-ed7e6ef622ec",
         "item": {
           "id": "vulcano-iii",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-iii.webp",
@@ -1773,7 +1786,7 @@
         "quantity": "1"
       },
       {
-        "id": "e51db70e-91bb-43a8-be87-1ac4427605ed",
+        "id": "eb1ddcc5-45b3-47b3-92c5-fa51ff433f58",
         "item": {
           "id": "shotgun-ammo",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/shotgun-ammo.webp",
@@ -2112,7 +2125,7 @@
     "xp": 0,
     "granted_items": [
       {
-        "id": "16caed40-5b34-4b52-91a9-2c98c4e59e39",
+        "id": "4e749404-a93e-47c3-ad4e-fb840ad7295a",
         "item": {
           "id": "jolt-mine",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/jolt-mine.webp",
@@ -2124,7 +2137,7 @@
         "quantity": 3
       },
       {
-        "id": "be8b1a8c-e7d7-4e8d-a1d3-49d701939def",
+        "id": "43c34c8a-46ae-4898-800e-93eb6d44f91a",
         "item": {
           "id": "showstopper",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/showstopper.webp",
@@ -2140,10 +2153,23 @@
     "updated_at": "2025-10-07T14:15:08.114262+00:00",
     "locations": [],
     "marker_category": null,
-    "required_items": [],
+    "required_items": [
+      {
+        "id": "6fba1cd5-9ed7-469b-ae7f-abd677205d95",
+        "item": {
+          "id": "surveyor-vault",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/surveyor-vault.webp",
+          "name": "Surveyor Vault",
+          "rarity": "Rare",
+          "item_type": "Recyclable"
+        },
+        "item_id": "surveyor-vault",
+        "quantity": 1
+      }
+    ],
     "rewards": [
       {
-        "id": "2f170f6f-78c1-452a-9ec5-4e831cacb6d7",
+        "id": "633f1434-ab13-4721-8a55-68c70942f273",
         "item": {
           "id": "photoelectric-cloak",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/photoelectric-cloak.webp",
@@ -2155,7 +2181,7 @@
         "quantity": "1"
       },
       {
-        "id": "4013f604-23de-41f1-82c5-f61bdc98420b",
+        "id": "e70b4051-3337-4995-a00a-00deec396860",
         "item": {
           "id": "raider-hatch-key",
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/raider-hatch-key.webp",

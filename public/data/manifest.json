@@ -1,0 +1,15 @@
+{
+  "lastUpdated": "2025-11-10T17:35:23.983Z",
+  "endpoints": [
+    "items",
+    "arcs",
+    "quests"
+  ],
+  "maps": [
+    "Dam",
+    "Spaceport",
+    "Buried City",
+    "Blue Gate"
+  ],
+  "version": "1.0.0"
+}

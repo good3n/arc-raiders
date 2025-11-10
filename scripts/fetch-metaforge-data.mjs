@@ -5,7 +5,8 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const BASE = "https://metaforge.app/api/arc-raiders";
-const ENDPOINTS = ["items", "arcs", "quests"]; // traders removed as mentioned
+const ENDPOINTS = ["items", "arcs", "quests"]; // Regular paginated endpoints
+const MAPS = ["Dam", "Spaceport", "Buried City", "Blue Gate"]; // Maps to fetch
 const OUTPUT_DIR = path.resolve(__dirname, "../public/data");
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -94,14 +95,74 @@ async function fetchAll(endpoint) {
   console.log(`✅ Saved minified version to ${minPath}`);
 }
 
+async function fetchMapData() {
+  const allMaps = {};
+
+  for (const mapName of MAPS) {
+    console.log(`\n🗺️  Fetching map data for: ${mapName}`);
+
+    try {
+      // Try the game-map-data endpoint structure
+      const url = `https://metaforge.app/api/game-map-data?tableID=arc-raiders&mapID=${encodeURIComponent(mapName)}`;
+      console.log("Fetching", url);
+
+      const res = await fetch(url);
+
+      if (res.status === 429) {
+        console.warn("⏳ Rate limited, waiting 10s then retrying...");
+        await sleep(10_000);
+        // Retry the same map
+        const retryRes = await fetch(url);
+        if (retryRes.ok) {
+          const data = await retryRes.json();
+          allMaps[mapName] = Array.isArray(data) ? data : data?.data || data;
+          console.log(
+            `✅ Got ${allMaps[mapName].length || 0} locations for ${mapName}`
+          );
+        }
+      } else if (res.ok) {
+        const data = await res.json();
+        allMaps[mapName] = Array.isArray(data) ? data : data?.data || data;
+        console.log(
+          `✅ Got ${allMaps[mapName].length || 0} locations for ${mapName}`
+        );
+      } else {
+        console.error(`❌ Failed to fetch ${mapName}: ${res.status}`);
+        allMaps[mapName] = [];
+      }
+
+      // Be nice to the API
+      await sleep(1500);
+    } catch (err) {
+      console.error(`❌ Error fetching ${mapName}:`, err.message);
+      allMaps[mapName] = [];
+    }
+  }
+
+  // Save combined map data
+  const outPath = path.join(OUTPUT_DIR, "maps.json");
+  fs.writeFileSync(outPath, JSON.stringify(allMaps, null, 2));
+  console.log(`\n✅ Saved all map data to ${outPath}`);
+
+  // Also create a minified version
+  const minPath = path.join(OUTPUT_DIR, "maps.min.json");
+  fs.writeFileSync(minPath, JSON.stringify(allMaps));
+  console.log(`✅ Saved minified version to ${minPath}`);
+}
+
 // Main execution
 console.log("🚀 Starting MetaForge data fetch...");
 console.log(`📁 Output directory: ${OUTPUT_DIR}`);
 
+// Fetch regular endpoints
 for (const ep of ENDPOINTS) {
   console.log(`\n📦 Fetching endpoint: ${ep}`);
   await fetchAll(ep);
 }
+
+// Fetch map data
+console.log("\n📍 Starting map data fetch...");
+await fetchMapData();
 
 console.log("\n🎉 All data fetched and saved to public/data");
 
@@ -109,6 +170,7 @@ console.log("\n🎉 All data fetched and saved to public/data");
 const manifest = {
   lastUpdated: new Date().toISOString(),
   endpoints: ENDPOINTS,
+  maps: MAPS,
   version: "1.0.0",
 };
 

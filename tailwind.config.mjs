@@ -2,6 +2,20 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,ts,tsx}", "./public/**/*.{html,js}"],
   theme: {
+    colors: {
+      dark: "#130918",
+      light: "#ece2d0",
+      blue: "#5FFFFF",
+      green: "#05FF74",
+      red: "#FF0000",
+      yellow: "#FFEA00",
+      orange: "#EBA416",
+      itemGray: "#4b5563",
+      itemGreen: "#16a34a",
+      itemBlue: "#2563eb",
+      itemPurple: "#9333ea",
+      itemOrange: "#ea580c",
+    },
     extend: {
       fontFamily: {
         sans: ["Barlow", "system-ui", "-apple-system", "sans-serif"],

@@ -168,19 +168,19 @@ export default function ArcExplorer() {
       {/* Search Control */}
       <section className="mb-6">
         <label className="block">
-          <span className="block text-xs font-semibold text-slate-500">Search</span>
+          <span className="block text-xs font-semibold text-dark">Search</span>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             type="search"
             placeholder="Type to filter ARCs…"
-            className="mt-1 w-full max-w-md rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+            className="mt-1 w-full max-w-md rounded-xl border border-light bg-light px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue"
           />
         </label>
       </section>
 
       {/* Status */}
-      <div className="mb-4 text-xs text-slate-600">
+      <div className="mb-4 text-xs text-light">
         {loading ? 'Loading ARCs…' : error ? `Error: ${error}` : `Showing ${filtered.length} ARCs`}
       </div>
 
@@ -191,7 +191,7 @@ export default function ArcExplorer() {
             <ArcCard key={arc.id || index} arc={arc} />
           ))
         ) : (
-          <div className="text-sm text-slate-500">No ARCs found.</div>
+          <div className="text-sm">No ARCs found.</div>
         )}
       </section>
     </div>

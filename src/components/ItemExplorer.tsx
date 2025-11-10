@@ -172,59 +172,59 @@ export default function ItemExplorer() {
   }, [data, query, itemTypeTab]);
 
   return (
-    <div>
-      {/* Item Type Tabs */}
-      {itemTypes.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          <button
-            onClick={() => setItemTypeTab('all')}
-            className={classNames(
-              'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
-              itemTypeTab === 'all'
-                ? 'bg-gray-700 text-white'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            )}
-          >
-            All
-          </button>
-          {itemTypes.map((type) => (
+    <div className="grid grid-cols-[280px_1fr] gap-4">
+      <aside className="sticky top-28 h-72">
+        {/* Search Control */}
+        <section className="mb-6">
+          <label className="block">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              type="search"
+              placeholder="Type to filter items…"
+            />
+          </label>
+        </section>
+
+        {/* Item Type Tabs */}
+        {itemTypes.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
             <button
-              key={type}
-              onClick={() => setItemTypeTab(type)}
+              onClick={() => setItemTypeTab('all')}
               className={classNames(
-                'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
-                itemTypeTab === type
-                  ? 'bg-gray-700 text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                'px-3 py-1.5 rounded-md text-xs font-medium transition-all',
+                itemTypeTab === 'all'
+                  ? 'bg-blue text-dark'
+                  : 'bg-light text-dark hover:bg-blue'
               )}
             >
-              {type}
+              All
             </button>
-          ))}
-        </div>
-      )}
-
-      {/* Search Control */}
-      <section className="mb-6">
-        <label className="block">
-          <span className="block text-xs font-semibold text-slate-500">Search</span>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            type="search"
-            placeholder="Type to filter items…"
-            className="mt-1 w-full max-w-md rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
-          />
-        </label>
-      </section>
-
-      {/* Status */}
-      <div className="mb-4 text-xs text-slate-600">
-        {loading ? 'Loading items…' : error ? `Error: ${error}` : `Showing ${filtered.length} items`}
-      </div>
+            {itemTypes.map((type) => (
+              <button
+                key={type}
+                onClick={() => setItemTypeTab(type)}
+                className={classNames(
+                  'px-3 py-1.5 rounded-md text-xs font-medium transition-all',
+                  itemTypeTab === type
+                    ? 'bg-blue text-dark'
+                    : 'bg-light text-dark hover:bg-blue'
+                )}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        )}
+      </aside>
 
       {/* Results */}
-      <section className="grid grid-cols-3 gap-3">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Status */}
+        <div className="mb-2 col-span-2">
+          {loading ? 'Loading items…' : error ? `Error: ${error}` : `Showing ${filtered.length} items`}
+        </div>
+
         {filtered && filtered.length > 0 ? (
           filtered.slice(0, 200).map((item: any, index: number) => (
             item.item_type !== "Misc" ? (
@@ -234,7 +234,7 @@ export default function ItemExplorer() {
             ) : null
           ))
         ) : (
-          <div className="text-sm text-slate-500">No items found.</div>
+          <div className="text-sm">No items found.</div>
         )}
       </section>
     </div>

@@ -17,6 +17,9 @@ export default {
       itemOrange: "#ea580c",
     },
     extend: {
+      backgroundImage: {
+        siteBackground: "url('/src/assets/images/background.jpg')",
+      },
       fontFamily: {
         sans: ["Barlow", "system-ui", "-apple-system", "sans-serif"],
       },

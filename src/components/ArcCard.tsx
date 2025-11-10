@@ -28,18 +28,20 @@ export default function ArcCard({ arc }: ArcCardProps) {
           />
         )}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#120918]/50 to-[#120918]" />
+        <div className="absolute inset-0" style={{background: 'linear-gradient(to bottom, transparent 0%, rgba(18, 9, 24, 0.5) 50%, #120918 100%)'}} />
         
         {/* Name and icon overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className="flex items-center gap-3">
             {arc.icon && (
-              <img
-                src={arc.icon}
-                alt={`${arc.name} icon`}
-                className="w-12 h-12 object-contain"
-                loading="lazy"
-              />
+              <span className="bg-[#130918]/20 backdrop-blur-sm p-2 rounded-md border border-light">
+                <img
+                  src={arc.icon}
+                  alt={`${arc.name} icon`}
+                  className="w-12 h-12 object-contain"
+                  loading="lazy"
+                />
+              </span>
             )}
             <h2 className="text-5xl font-black text-light uppercase tracking-wider">
               {arc.name}
@@ -49,7 +51,7 @@ export default function ArcCard({ arc }: ArcCardProps) {
       </div>
       
       {/* Description section */}
-      <div className="px-6 pb-6">
+      <div className="p-6">
         <p className="leading-relaxed">
           {arc.description}
         </p>

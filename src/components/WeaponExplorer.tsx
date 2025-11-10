@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-type ItemTabKey = 'all' | string;
-
 // Cache configuration
 const CACHE_VERSION = 'v1';
 const CACHE_NAME = `metaforge-cache-${CACHE_VERSION}`;
@@ -11,13 +9,14 @@ function classNames(...xs: Array<string | false | null | undefined>) {
   return xs.filter(Boolean).join(' ');
 }
 
-export default function ItemExplorer() {
+export default function WeaponExplorer() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
-  const [itemTypeTab, setItemTypeTab] = useState<ItemTabKey>('all');
   const [rarityFilter, setRarityFilter] = useState<string>('all');
+  const [ammoTypeFilter, setAmmoTypeFilter] = useState<string>('all');
+  const [subcategoryFilter, setSubcategoryFilter] = useState<string>('all');
 
   const endpoint = '/data/items.json';
 
@@ -40,7 +39,7 @@ export default function ItemExplorer() {
             
             if (age < CACHE_DURATION) {
               if (!ignore) {
-                setData(cachedData);
+                setData(cachedData.filter((item: any) => item.item_type === 'Weapon'));
                 setLoading(false);
               }
               
@@ -103,7 +102,8 @@ export default function ItemExplorer() {
           }
           
           if (!ignore && !background) {
-            setData(json);
+            // Filter for weapons only
+            setData(json.filter((item: any) => item.item_type === 'Weapon'));
           }
         }
       } catch (e: any) {
@@ -132,35 +132,36 @@ export default function ItemExplorer() {
     keysToRemove.forEach(key => localStorage.removeItem(key));
   };
 
-  // Get unique item types
-  const itemTypes = useMemo(() => {
-    const types = new Set<string>();
-    data.forEach(item => {
-      if (item.item_type && item.item_type !== 'Misc' && item.item_type !== 'Cosmetic' && item.item_type !== 'Refinement') {
-        // Rename categories
-        let type = item.item_type;
-        if (type === 'Quick use' || type === 'Consumable' || type === 'Throwable' || type === 'Explosives') {
-          type = 'Quick Use';
-        } else if (type === 'Medical') {
-          type = 'Nature';
-        } else if (type === 'Modification' || type === 'Modfication') {
-          type = 'Mods';
-        } else if (type === 'Quest Item') {
-          type = 'Key';
-        } else if (type === 'Advanced Material') {
-          type = 'Refined Material';
-        }
-        types.add(type);
+  // Get unique subcategories for weapons
+const subcategories = useMemo(() => {
+  const subs = new Set<string>();
+  data.forEach(item => {
+    if (item.subcategory) {
+      let normalized = item.subcategory.trim();
+      
+      // Apply renaming rules
+      if (normalized === 'Hand Cannon') {
+        normalized = 'Pistol';
+      } else if (normalized === 'Battle Rifle') {
+        normalized = 'Rifle';
       }
-    });
-    return Array.from(types).sort();
-  }, [data]);
+      
+      // Check if name contains "Ferro"
+      if (item.name && item.name.includes('Ferro')) {
+        normalized = 'Rifle';
+      }
+      
+      subs.add(normalized);
+    }
+  });
+  return Array.from(subs).sort();
+}, [data]);
 
-  // Get unique rarities
+  // Get unique rarities for weapons
   const rarities = useMemo(() => {
     const raritySet = new Set<string>();
     data.forEach(item => {
-      if (item.rarity && item.item_type !== 'Misc' && item.item_type !== 'Cosmetic' && item.item_type !== 'Refinement') {
+      if (item.rarity) {
         raritySet.add(item.rarity);
       }
     });
@@ -185,33 +186,58 @@ export default function ItemExplorer() {
     });
   }, [data]);
 
-  // Filter data based on search query and item type tab
+  // Get unique ammo types for weapons
+  const ammoTypes = useMemo(() => {
+    const types = new Set<string>();
+    data.forEach(item => {
+      if (item.ammo_type) {
+        // Normalize the ammo type to prevent duplicates
+        const normalized = item.ammo_type.trim().toLowerCase();
+        types.add(normalized);
+      }
+    });
+    // Sort and capitalize for display
+    return Array.from(types).sort().map(type => 
+      type.charAt(0).toUpperCase() + type.slice(1)
+    );
+  }, [data]);
+
+  // Filter data based on search query and filters
   const filtered = useMemo(() => {
     let list = data;
-  
-    // Filter by item type
-    if (itemTypeTab !== 'all') {
-      list = list.filter(item => {
-        let type = item.item_type;
-        // Apply same renaming logic
-        if (type === 'Quick use' || type === 'Consumable' || type === 'Throwable' || type === 'Explosives') {
-          type = 'Quick Use';
-        } else if (type === 'Medical') {
-          type = 'Nature';
-        } else if (type === 'Modification' || type === 'Modfication') {
-          type = 'Mods';
-        } else if (type === 'Quest Item') {
-          type = 'Key';
-        } else if (type === 'Advanced Material') {
-          type = 'Refined Material';
-        }
-        return type === itemTypeTab;
-      });
+
+    // Filter by subcategory
+if (subcategoryFilter !== 'all') {
+  list = list.filter(item => {
+    let subcategory = item.subcategory;
+    
+    // Apply same renaming rules
+    if (subcategory === 'Hand Cannon') {
+      subcategory = 'Pistol';
+    } else if (subcategory === 'Battle Rifle') {
+      subcategory = 'Rifle';
     }
-      
+    
+    // Check if name contains "Ferro"
+    if (item.name && item.name.includes('Ferro')) {
+      subcategory = 'Rifle';
+    }
+    
+    return subcategory === subcategoryFilter;
+  });
+}
+  
     // Filter by rarity
     if (rarityFilter !== 'all') {
       list = list.filter(item => item.rarity === rarityFilter);
+    }
+
+    // Filter by ammo type
+    if (ammoTypeFilter !== 'all') {
+      list = list.filter(item => {
+        const normalized = item.ammo_type?.trim().toLowerCase();
+        return normalized === ammoTypeFilter.toLowerCase();
+      });
     }
   
     if (!query) return list;
@@ -222,9 +248,11 @@ export default function ItemExplorer() {
       const searchable = [
         item.name,
         item.description,
-        item.item_type,
         item.rarity,
         item.workbench,
+        item.firingMode,
+        item.agility,
+        item.stealth,
         item.flavor_text,
         item.subcategory,
         item.ammo_type
@@ -232,11 +260,11 @@ export default function ItemExplorer() {
       
       return searchable.includes(q);
     });
-  }, [data, query, itemTypeTab, rarityFilter]);
+  }, [data, query, rarityFilter, ammoTypeFilter, subcategoryFilter]);
 
   return (
     <div className="grid grid-cols-[280px_1fr] gap-4">
-      <aside className="sticky top-28 h-72">
+      <aside className="sticky top-28 pb-10 h-[calc(100vh-7rem)] overflow-y-auto scrollbar-hide">
         {/* Search Control */}
         <section className="mb-6">
           <label className="block">
@@ -244,52 +272,89 @@ export default function ItemExplorer() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               type="search"
-              placeholder="Type to filter items…"
+              placeholder="Type to filter weapons…"
+              className="w-full px-3 py-2 rounded-lg border border-gray-300"
             />
           </label>
         </section>
 
-        {/* Item Type Tabs */}
-        <h3 className="text-sm font-semibold mb-2">Item Type</h3>
-        {itemTypes.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            <button
-              onClick={() => setItemTypeTab('all')}
-              className={classNames(
-                'px-3 py-1.5 rounded-md text-xs font-medium transition-all',
-                itemTypeTab === 'all'
-                  ? 'bg-blue text-dark'
-                  : 'bg-light text-dark hover:bg-blue'
-              )}
-            >
-              All
-            </button>
-            {itemTypes.map((type) => (
+        {/* Subcategory Filters */}
+        {subcategories.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-sm font-semibold mb-2">Subcategory</h3>
+            <div className="flex flex-col gap-1">
               <button
-                key={type}
-                onClick={() => setItemTypeTab(type)}
+                onClick={() => setSubcategoryFilter('all')}
                 className={classNames(
-                  'px-3 py-1.5 rounded-md text-xs font-medium transition-all',
-                  itemTypeTab === type
+                  'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left',
+                  subcategoryFilter === 'all'
                     ? 'bg-blue text-dark'
                     : 'bg-light text-dark hover:bg-blue'
                 )}
               >
-                {type}
+                All
               </button>
-            ))}
+              {subcategories.map((subcategory) => (
+                <button
+                  key={subcategory}
+                  onClick={() => setSubcategoryFilter(subcategory)}
+                  className={classNames(
+                    'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left',
+                    subcategoryFilter === subcategory
+                      ? 'bg-blue text-dark'
+                      : 'bg-light text-dark hover:bg-blue'
+                  )}
+                >
+                  {subcategory}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Ammo Type Filters */}
+        {ammoTypes.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-sm font-semibold mb-2">Ammo Type</h3>
+            <div className="flex flex-col gap-1">
+              <button
+                onClick={() => setAmmoTypeFilter('all')}
+                className={classNames(
+                  'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left',
+                  ammoTypeFilter === 'all'
+                    ? 'bg-blue text-dark'
+                    : 'bg-light text-dark hover:bg-blue'
+                )}
+              >
+                All Types
+              </button>
+              {ammoTypes.map((type) => (
+                <button
+                  key={type}
+                  onClick={() => setAmmoTypeFilter(type.toLowerCase())}
+                  className={classNames(
+                    'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left',
+                    ammoTypeFilter === type
+                      ? 'bg-blue text-dark'
+                      : 'bg-light text-dark hover:bg-blue'
+                  )}
+                >
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
         {/* Rarity Filters */}
         {rarities.length > 0 && (
-          <div className="mt-6">
+          <div>
             <h3 className="text-sm font-semibold mb-2">Rarity</h3>
             <div className="flex flex-col gap-1">
               <button
                 onClick={() => setRarityFilter('all')}
                 className={classNames(
-                  'px-3 py-1.5 rounded-md text-xs font-medium transition-all text-left item-tag',
+                  'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left item-tag',
                   rarityFilter === 'all'
                     ? 'bg-blue text-dark'
                     : 'bg-light text-dark hover:bg-blue'
@@ -302,7 +367,7 @@ export default function ItemExplorer() {
                   key={rarity}
                   onClick={() => setRarityFilter(rarity)}
                   className={classNames(
-                    'px-3 py-1.5 rounded-md text-xs font-medium transition-all text-left item-tag',
+                    'px-3 py-1.5 rounded-md text-sm font-medium transition-all text-left item-tag',
                     rarity.toLowerCase(),
                     rarityFilter === rarity
                       ? 'opacity-100'
@@ -318,66 +383,53 @@ export default function ItemExplorer() {
       </aside>
 
       {/* Results */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-10 relative items-start">
         {/* Status */}
-        <div className="mb-2 col-span-2">
-          {loading ? 'Loading items…' : error ? `Error: ${error}` : `Showing ${filtered.length} items`}
+        <div className="absolute top-0 left-0">
+          {loading ? 'Loading weapons…' : error ? `Error: ${error}` : `Showing ${filtered.length} weapons`}
         </div>
 
         {filtered && filtered.length > 0 ? (
-          filtered.slice(0, 200).map((item: any, index: number) => (
-            item.item_type !== "Misc" ? (
-              <article key={item.id || index} className="rounded-2xl border border-[#442A50] shadow-sm p-4 bg-[#1B0F21]">
-                <ItemCard item={item} index={index} />
-              </article>
-            ) : null
+          filtered.map((weapon: any, index: number) => (
+            <article key={weapon.id || index} className="rounded-2xl border border-[#442A50] shadow-sm p-4 bg-[#1B0F21]">
+              <WeaponCard weapon={weapon} index={index} />
+            </article>
           ))
         ) : (
-          <div className="text-sm">No items found.</div>
+          <div className="text-sm">No weapons found.</div>
         )}
       </section>
     </div>
   );
 }
 
-function ItemCard({ item, index }: { item: any; index: number }) {
-  console.log(item);
+function WeaponCard({ weapon, index }: { weapon: any; index: number }) {
+  console.log(weapon);
   const addCommas = (value: number) => {
     return value.toLocaleString();
   }
   
-  const title = item?.name || item?.title || item?.displayName || item?.id || `Item ${index + 1}`;
-  const subtitle = item?.rarity || item?.type || item?.category || item?.tier || '';
-  const description = item?.description || item?.flavor_text || item?.notes || '';
-  const icon = item?.icon || item?.image || '';
-  const value = item?.value || null;
-  const workbench = item?.workbench || null;
-  const itemType = item?.item_type || null;
-  const lootArea = item?.loot_area || null;
-  const ammoType = item?.ammo_type || null;
+  const title = weapon?.name || `Weapon ${index + 1}`;
+  const subtitle = weapon?.rarity || '';
+  const description = weapon?.description || weapon?.flavor_text || '';
+  const icon = weapon?.icon || weapon?.image || '';
+  const value = weapon?.value || null;
+  const workbench = weapon?.workbench || null;
+  const ammoType = weapon?.ammo_type || null;
   const { 
     weight,
-    movementPenalty, 
-    healingPerSecond, 
-    stackSize, 
-    radius, 
-    raiderStun, 
-    arcStun, 
+    stackSize,
     damage,
     damagePerSecond,
-    staminaPerSecond,
-    duration,
-    agility,
     fireRate,
     magazineSize,
     range,
     reducedReloadTime,
     stability,
+    agility,
+    firingMode,
     stealth,
-    damageMitigation,
-    durability,
-    shieldCharge,
-  } = item?.stat_block || {};
+  } = weapon?.stat_block || {};
 
   return (
     <div>
@@ -399,170 +451,86 @@ function ItemCard({ item, index }: { item: any; index: number }) {
       <p className="mt-2" dangerouslySetInnerHTML={{ __html: description }}></p>        
       <footer className="text-sm bg-[#ece2d0] p-4 rounded-md mt-2">
         <div>
-          {itemType ? (
-            <span className="text-[#130918] item-tag bg-[#CFC8B8] border border-[#CAC1AF]" title="Item Type">
-              {itemType}
-            </span>
-          ) : null}
+          <span className="text-[#130918] item-tag bg-[#CFC8B8] border border-[#CAC1AF]" title="Item Type">
+            Weapon
+          </span>
         </div>
-        {
-          movementPenalty ||
-          workbench ||
-          healingPerSecond ||
-          lootArea ||
-          radius ||
-          raiderStun ||
-          arcStun ||
-          damage ||
-          damagePerSecond ||
-          staminaPerSecond ||
-          duration ||
-          ammoType ||
-          agility ||
-          fireRate ||
-          magazineSize ||
-          range ||
-          reducedReloadTime ||
-          stability ||
-          stealth ||
-          damageMitigation ||
-          durability ||
-          shieldCharge ? (
+        
         <div className="flex flex-col gap-2 mt-2">
-          {movementPenalty ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Movement Penalty">
-              <span className="font-semibold">Movement Penalty:&nbsp;</span>
-              -{movementPenalty}%
-            </div>
-          ) : null}
           {workbench ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Workbench">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Crafted:&nbsp;</span>
               {workbench}
             </div>
           ) : null}
-          {healingPerSecond ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Healing Per Second">
-              <span className="font-semibold">Healing Per Second:&nbsp;</span>
-              {healingPerSecond}
-            </div>
-          ) : null}
-          {lootArea ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Loot Area">
-              <span className="font-semibold">Loot from:&nbsp;</span>
-              {lootArea}
-            </div>
-          ) : null}
-          {radius ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Radius">
-              <span className="font-semibold">Radius:&nbsp;</span>
-              {radius}m
-            </div>
-          ) : null}
-          {raiderStun ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Raider Stun">
-              <span className="font-semibold">Raider Stun:&nbsp;</span>
-              {raiderStun}
-            </div>
-          ) : null}
-          {arcStun ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Arc Stun">
-              <span className="font-semibold">Arc Stun:&nbsp;</span>
-              {arcStun}
-            </div> 
-          ) : null}
-          {duration ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Duration">
-              <span className="font-semibold">Duration:&nbsp;</span>
-              {duration}s
-            </div>
-          ) : null}
           {ammoType ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Ammo Type">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Ammo Type:&nbsp;</span>
               {ammoType.charAt(0).toUpperCase() + ammoType.slice(1)}
             </div>
           ) : null}
           {damage ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Damage">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Damage:&nbsp;</span>
               {damage}
             </div>
           ) : null}
           {damagePerSecond ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Damage Per Second">
-              <span className="font-semibold">Damage Per Second:&nbsp;</span>
+            <div className="text-[#130918] font-medium flex items-center">
+              <span className="font-semibold">DPS:&nbsp;</span>
               {damagePerSecond}
             </div>
           ) : null}
-          {staminaPerSecond ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Stamina Per Second">
-              <span className="font-semibold">Stamina Per Second:&nbsp;</span>
-              {staminaPerSecond}
-            </div>
-          ) : null}
-          {agility ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Agility">
-              <span className="font-semibold">Agility:&nbsp;</span>
-              {agility}
-            </div>
-          ) : null}
           {fireRate ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Fire Rate">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Fire Rate:&nbsp;</span>
               {fireRate}
             </div>
           ) : null}
+          {firingMode ? (
+            <div className="text-[#130918] font-medium flex items-center">
+              <span className="font-semibold">Firing Mode:&nbsp;</span>
+              {firingMode}
+            </div>
+          ) : null}
+          {agility ? (
+            <div className="text-[#130918] font-medium flex items-center">
+              <span className="font-semibold">Agility:&nbsp;</span>
+              {agility}
+            </div>
+          ) : null}
+          {stealth ? (
+            <div className="text-[#130918] font-medium flex items-center">
+              <span className="font-semibold">Stealth:&nbsp;</span>
+              {stealth}
+            </div>
+          ) : null}
           {magazineSize ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Magazine Size">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Magazine Size:&nbsp;</span>
               {magazineSize}
             </div>
           ) : null}
           {range ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Range">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Range:&nbsp;</span>
               {range}m
             </div>
           ) : null}
           {reducedReloadTime ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Reduced Reload Time">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Reduced Reload Time:&nbsp;</span>
               {reducedReloadTime}%
             </div>
           ) : null}
           {stability ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Stability">
+            <div className="text-[#130918] font-medium flex items-center">
               <span className="font-semibold">Stability:&nbsp;</span>
               {stability}
             </div>
           ) : null}
-          {stealth ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Stealth">
-              <span className="font-semibold">Stealth:&nbsp;</span>
-              {stealth}
-            </div>
-          ) : null}
-          {damageMitigation ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Damage Mitigation">
-              <span className="font-semibold">Damage Mitigation:&nbsp;</span>
-              {damageMitigation}%
-            </div>
-          ) : null}
-          {durability ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Durability">
-              <span className="font-semibold">Durability:&nbsp;</span>
-              {durability}
-            </div>
-          ) : null}
-          {shieldCharge ? (
-            <div className="text-[#130918] font-medium flex items-center" title="Shield Charge">
-              <span className="font-semibold">Shield Charge:&nbsp;</span>
-              {shieldCharge}
-            </div>
-          ) : null}
         </div>
-        ) : null}
+        
         {weight || value || stackSize ? (
           <div className="grid grid-cols-3 items-center gap-2 bg-[#CFC8B8] border divide-x divide-dashed divide-[#B1A793] border-[#CAC1AF] rounded-md mt-2">
             {weight ? (

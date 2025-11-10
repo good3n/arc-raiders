@@ -1,10 +1,11 @@
 
 ---
 import Layout from '@layouts/Layout.astro';
+import WeaponExplorer from '@components/WeaponExplorer.tsx';
 ---
 
-<Layout title="Weapons | ARCIndex.app">
+<Layout title="Items | ARCIndex.app">
   <section class="mt-6">
-    Under construction...
+    <WeaponExplorer client:load />
   </section>
 </Layout>

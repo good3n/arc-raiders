@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply text-[#ece2d0] bg-[#130918];
+    @apply text-[#ece2d0] bg-siteBackground bg-fixed bg-center bg-cover;
   }
 
   input {
@@ -49,5 +49,16 @@
     &.legendary {
       @apply bg-itemOrange/25 text-[#fdba74] border-itemOrange/50;
     }
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }

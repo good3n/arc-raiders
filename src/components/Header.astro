@@ -1,5 +1,12 @@
 ---
 import svgLogo from '@assets/images/svg/logo.svg';
+const pathname = Astro.url.pathname;
+
+// Helper function to get nav link classes
+const getLinkClasses = (href: string) => {
+  const isActive = pathname.startsWith(href.replace(/\/$/, ''));
+  return `transition-colors ${isActive ? 'text-orange' : 'text-light hover:text-yellow'}`;
+};
 ---
 
 <header class="sticky top-0 z-10 bg-[#130918]/60 backdrop-blur">
@@ -12,24 +19,36 @@ import svgLogo from '@assets/images/svg/logo.svg';
         </h1>
       </div>
     </a>
-    <ul class="flex items-center gap-4 font-medium text-lg">
+    <ul class="flex items-center gap-4 font-semibold text-xl">
       <li>
-        <a href="/items/">Items</a>
-      </li>
-      <li>
-        <a href="/weapons/">Weapons</a>
-      </li>
-      <li class="hidden">
-        <a href="/quests/">Quests</a>
-      </li>
-      <li class="hidden">
-        <a href="/traders/">Traders</a>
-      </li>
-      <li class="hidden">
-        <a href="/maps/">Maps</a>
+        <a href="/items/" class={getLinkClasses('/items/')}>
+          Items
+        </a>
       </li>
       <li>
-        <a href="/arcs/">Arcs</a>
+        <a href="/weapons/" class={getLinkClasses('/weapons/')}>
+          Weapons
+        </a>
+      </li>
+      <li class="hidden">
+        <a href="/quests/" class={getLinkClasses('/quests/')}>
+          Quests
+        </a>
+      </li>
+      <li class="hidden">
+        <a href="/traders/" class={getLinkClasses('/traders/')}>
+          Traders
+        </a>
+      </li>
+      <li class="hidden">
+        <a href="/maps/" class={getLinkClasses('/maps/')}>
+          Maps
+        </a>
+      </li>
+      <li>
+        <a href="/arcs/" class={getLinkClasses('/arcs/')}>
+          <span class="italic">A</span>rcs
+        </a>
       </li>
     </ul>
     <a

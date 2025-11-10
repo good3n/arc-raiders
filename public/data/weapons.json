@@ -1,0 +1,3151 @@
+[
+  {
+    "id": "anvil",
+    "baseName": "Anvil",
+    "description": "Single-action hand cannon with high damage output and headshot damage, but slow handling.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/anvil-i.webp",
+    "rarity": "Uncommon",
+    "subcategory": "Pistol",
+    "ammoType": "heavy",
+    "baseStats": {
+      "damage": 40,
+      "fireRate": 16.3,
+      "range": 50.2,
+      "stability": 75.2,
+      "agility": 69.1,
+      "stealth": 10,
+      "magazineSize": 6,
+      "weight": 5,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "anvil-i",
+        "value": 5000,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/anvil-i.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 16.3,
+          "range": 50.2,
+          "stability": 75.2,
+          "agility": 69.1,
+          "stealth": 10,
+          "magazineSize": 6,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "anvil-ii",
+        "value": 7000,
+        "workbench": "Weapon Bench II",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/anvil-ii.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 20.375,
+          "range": 50.2,
+          "stability": 75.2,
+          "agility": 69.1,
+          "stealth": 10,
+          "magazineSize": 6,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 25,
+          "reducedDispersionRecoveryTime": 6.5
+        },
+        "activeModifiers": {
+          "increasedFireRate": 25,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 6.5,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "anvil-iii",
+        "value": 10000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/anvil-iii.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 24.450000000000003,
+          "range": 50.2,
+          "stability": 75.2,
+          "agility": 69.1,
+          "stealth": 10,
+          "magazineSize": 6,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 50,
+          "reducedDispersionRecoveryTime": 12.5
+        },
+        "activeModifiers": {
+          "increasedFireRate": 50,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 12.5,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "anvil-iv",
+        "value": 13000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/anvil-iv.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 28.525000000000002,
+          "range": 50.2,
+          "stability": 75.2,
+          "agility": 69.1,
+          "stealth": 10,
+          "magazineSize": 6,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 75,
+          "reducedDispersionRecoveryTime": 18.75
+        },
+        "activeModifiers": {
+          "increasedFireRate": 75,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 18.75,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "arpeggio",
+    "baseName": "Arpeggio",
+    "description": "Has decent damage output and accuracy.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/arpeggio-i.webp",
+    "rarity": "Uncommon",
+    "subcategory": "Assault Rifle",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 9.5,
+      "fireRate": 8.7,
+      "range": 55.9,
+      "stability": 78,
+      "agility": 57.3,
+      "stealth": 14,
+      "magazineSize": 24,
+      "weight": 6,
+      "firingMode": "Burst",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "arpeggio-i",
+        "value": 5500,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/arpeggio-i.webp",
+        "stats": {
+          "damage": 9.5,
+          "fireRate": 8.7,
+          "range": 55.9,
+          "stability": 78,
+          "agility": 57.3,
+          "stealth": 14,
+          "magazineSize": 24,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "arpeggio-ii",
+        "value": 8000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/arpeggio-ii.webp",
+        "stats": {
+          "damage": 9.5,
+          "fireRate": 10.44,
+          "range": 55.9,
+          "stability": 78,
+          "agility": 57.3,
+          "stealth": 14,
+          "magazineSize": 24,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 12.5
+        },
+        "activeModifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 12.5,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "arpeggio-iii",
+        "value": 11500,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/arpeggio-ii.webp",
+        "stats": {
+          "damage": 9.5,
+          "fireRate": 12.179999999999998,
+          "range": 55.9,
+          "stability": 78,
+          "agility": 57.3,
+          "stealth": 14,
+          "magazineSize": 24,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 40,
+          "reducedReloadTime": 25,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 40,
+          "reducedReloadTime": 25,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 46,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "arpeggio-iv",
+        "value": 15000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/arpeggio-ii.webp",
+        "stats": {
+          "damage": 9.5,
+          "fireRate": 13.92,
+          "range": 55.9,
+          "stability": 78,
+          "agility": 57.3,
+          "stealth": 14,
+          "magazineSize": 24,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 60,
+          "reducedReloadTime": 50,
+          "reducedDurabilityBurnRate": 70
+        },
+        "activeModifiers": {
+          "increasedFireRate": 60,
+          "reducedReloadTime": 50,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 70,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "bettina",
+    "baseName": "Bettina",
+    "description": "Has slow fire rate and high damage output.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/bettina-i.webp",
+    "rarity": "Epic",
+    "subcategory": "Assault Rifle",
+    "ammoType": "heavy",
+    "baseStats": {
+      "damage": 14,
+      "fireRate": 32,
+      "range": 0,
+      "stability": 76.4,
+      "agility": 48.2,
+      "stealth": 14,
+      "magazineSize": 20,
+      "weight": 11,
+      "firingMode": null,
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "bettina-i",
+        "value": 8000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bettina-i.webp",
+        "stats": {
+          "damage": 14,
+          "fireRate": 32,
+          "range": 0,
+          "stability": 76.4,
+          "agility": 48.2,
+          "stealth": 14,
+          "magazineSize": 20,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "bettina-ii",
+        "value": 11000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bettina-ii.webp",
+        "stats": {
+          "damage": 14,
+          "fireRate": 33.6,
+          "range": 51.3,
+          "stability": 76.4,
+          "agility": 48.2,
+          "stealth": 14,
+          "magazineSize": 20,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 5,
+          "reducedReloadTime": 11.1
+        },
+        "activeModifiers": {
+          "increasedFireRate": 5,
+          "reducedReloadTime": 11.1,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "bettina-iii",
+        "value": 14000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bettina-iii.webp",
+        "stats": {
+          "damage": 14,
+          "fireRate": 35.2,
+          "range": 51.3,
+          "stability": 76.4,
+          "agility": 48.2,
+          "stealth": 14,
+          "magazineSize": 20,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 22.2
+        },
+        "activeModifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 22.2,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "bettina-iv",
+        "value": 18000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bettina-iv.webp",
+        "stats": {
+          "damage": 14,
+          "fireRate": 36.8,
+          "range": 51.3,
+          "stability": 76.4,
+          "agility": 48.2,
+          "stealth": 14,
+          "magazineSize": 20,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 15,
+          "reducedReloadTime": 33.3
+        },
+        "activeModifiers": {
+          "increasedFireRate": 15,
+          "reducedReloadTime": 33.3,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "bobcat",
+    "baseName": "Bobcat",
+    "description": "Fully automatic SMG with high fire rate but low accuracy.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/bobcat-ii.webp",
+    "rarity": "Epic",
+    "subcategory": "SMG",
+    "ammoType": "light",
+    "baseStats": {
+      "damage": 6,
+      "fireRate": 66.7,
+      "range": 44,
+      "stability": 45.9,
+      "agility": 73.1,
+      "stealth": 21,
+      "magazineSize": 20,
+      "weight": 7,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "bobcat-i",
+        "value": 13000,
+        "workbench": "Weapon Bench 3",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bobcat-ii.webp",
+        "stats": {
+          "damage": 6,
+          "fireRate": 66.7,
+          "range": 44,
+          "stability": 45.9,
+          "agility": 73.1,
+          "stealth": 21,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "bobcat-ii",
+        "value": 17000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bobcat-ii.webp",
+        "stats": {
+          "damage": 6,
+          "fireRate": 66.7,
+          "range": 44,
+          "stability": 44,
+          "agility": 73.1,
+          "stealth": 21,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13,
+          "reducedMaxShotDispersion": 15
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 15,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "bobcat-iii",
+        "value": 22000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bobcat-iii.webp",
+        "stats": {
+          "damage": 6,
+          "fireRate": 66.7,
+          "range": 44,
+          "stability": 45.9,
+          "agility": 73.1,
+          "stealth": 21,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 26,
+          "reducedMaxShotDispersion": 30
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 30,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "bobcat-iv",
+        "value": 27000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/bobcat-iv.webp",
+        "stats": {
+          "damage": 6,
+          "fireRate": 66.7,
+          "range": 44,
+          "stability": 45.9,
+          "agility": 73.1,
+          "stealth": 21,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 40,
+          "reducedMaxShotDispersion": 45
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 45,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "burletta",
+    "baseName": "Burletta",
+    "description": "Semi-automatic pistol with decent damage output and accuracy. Can be fired as fast as you can pull the trigger.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/burletta-i.webp",
+    "rarity": "Uncommon",
+    "subcategory": "Pistol",
+    "ammoType": "light",
+    "baseStats": {
+      "damage": 10,
+      "fireRate": 28,
+      "range": 41.7,
+      "stability": 74.5,
+      "agility": 84.4,
+      "stealth": 24,
+      "magazineSize": 12,
+      "weight": 4,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "burletta-i",
+        "value": 2900,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/burletta-i.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 41.7,
+          "stability": 74.5,
+          "agility": 84.4,
+          "stealth": 24,
+          "magazineSize": 12,
+          "weight": 4,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "burletta-ii",
+        "value": 5000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/burletta-ii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 41.7,
+          "stability": 74.5,
+          "agility": 84.4,
+          "stealth": 24,
+          "magazineSize": 12,
+          "weight": 4,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 16.6
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 16.6,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "burletta-iiii",
+        "value": 7000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/burletta-iiii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 41.7,
+          "stability": 74.5,
+          "agility": 84.4,
+          "stealth": 24,
+          "magazineSize": 12,
+          "weight": 4,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 33.3
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 33.3,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "burletta-iv",
+        "value": 10000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/burletta-iv.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 41.7,
+          "stability": 74.5,
+          "agility": 84.4,
+          "stealth": 24,
+          "magazineSize": 12,
+          "weight": 4,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 50
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 50,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "equalizer",
+    "baseName": "Equalizer",
+    "description": "A high capacity experimental beam rifle.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/equalizer-i.webp",
+    "rarity": "Legendary",
+    "subcategory": "Special",
+    "ammoType": "energy",
+    "baseStats": {
+      "damage": 8,
+      "fireRate": 33.33,
+      "range": 0,
+      "stability": 84.6,
+      "agility": 44.6,
+      "stealth": 0,
+      "magazineSize": 50,
+      "weight": 14,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "equalizer-i",
+        "value": 34000,
+        "workbench": "Weapon Bench 3",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/equalizer-i.webp",
+        "stats": {
+          "damage": 8,
+          "fireRate": 33.33,
+          "range": 0,
+          "stability": 84.6,
+          "agility": 44.6,
+          "stealth": 0,
+          "magazineSize": 50,
+          "weight": 14,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "ferro",
+    "baseName": "Ferro",
+    "description": "Heavy break-action rifle. Packs a punch, but must be reloaded between every shot.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/ferro-i.webp",
+    "rarity": "Common",
+    "subcategory": "Rifle",
+    "ammoType": "heavy",
+    "baseStats": {
+      "damage": 40,
+      "fireRate": 6.6,
+      "range": 53.1,
+      "stability": 78.1,
+      "agility": 32.1,
+      "stealth": 8,
+      "magazineSize": 1,
+      "weight": 8,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "ferro-i",
+        "value": 475,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/ferro-i.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 6.6,
+          "range": 53.1,
+          "stability": 78.1,
+          "agility": 32.1,
+          "stealth": 8,
+          "magazineSize": 1,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "ferro-ii",
+        "value": 1000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/ferro-ii.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 6.6,
+          "range": 53.1,
+          "stability": 78.1,
+          "agility": 31.1,
+          "stealth": 8,
+          "magazineSize": 1,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "ferro-iii",
+        "value": 2000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/ferro-iii.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 6.6,
+          "range": 53.1,
+          "stability": 78.1,
+          "agility": 31.1,
+          "stealth": 8,
+          "magazineSize": 1,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 26,
+          "reducedDurabilityBurnRate": 51
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 51,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "ferro-iv",
+        "value": 2900,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/ferro-iv.webp",
+        "stats": {
+          "damage": 40,
+          "fireRate": 6.6,
+          "range": 53.1,
+          "stability": 78.1,
+          "agility": 31.1,
+          "stealth": 8,
+          "magazineSize": 1,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 39,
+          "reducedDurabilityBurnRate": 51
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 39,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "hairpin",
+    "baseName": "Hairpin",
+    "description": "Single-action pistol with a built-in silencer. Great for stealth, but tricky in combat.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/hairpin-i.webp",
+    "rarity": "Common",
+    "subcategory": "Pistol",
+    "ammoType": "light",
+    "baseStats": {
+      "damage": 20,
+      "fireRate": 9,
+      "range": 38.6,
+      "stability": 90.9,
+      "agility": 78.3,
+      "stealth": 70,
+      "magazineSize": 8,
+      "weight": 3,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "hairpin-i",
+        "value": 450,
+        "workbench": "Weapon Bench 1 or Basic Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hairpin-i.webp",
+        "stats": {
+          "damage": 20,
+          "fireRate": 9,
+          "range": 38.6,
+          "stability": 90.9,
+          "agility": 78.3,
+          "stealth": 70,
+          "magazineSize": 8,
+          "weight": 3,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "hairpin-ii",
+        "value": 1000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hairpin-ii.webp",
+        "stats": {
+          "damage": 20,
+          "fireRate": 9.9,
+          "range": 38.6,
+          "stability": 90.9,
+          "agility": 78.3,
+          "stealth": 70,
+          "magazineSize": 8,
+          "weight": 3,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 13
+        },
+        "activeModifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "hairpin-iii",
+        "value": 2000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hairpin-iii.webp",
+        "stats": {
+          "damage": 20,
+          "fireRate": 10.799999999999999,
+          "range": 38.6,
+          "stability": 90.9,
+          "agility": 78.3,
+          "stealth": 70,
+          "magazineSize": 8,
+          "weight": 3,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 26
+        },
+        "activeModifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "hairpin-iv",
+        "value": 2900,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hairpin-iv.webp",
+        "stats": {
+          "damage": 20,
+          "fireRate": 11.700000000000001,
+          "range": 38.6,
+          "stability": 90.9,
+          "agility": 78.3,
+          "stealth": 70,
+          "magazineSize": 8,
+          "weight": 3,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 30,
+          "reducedReloadTime": 40
+        },
+        "activeModifiers": {
+          "increasedFireRate": 30,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "hullcracker",
+    "baseName": "Hullcracker",
+    "description": "Fires explosive projectiles that only detonate when hitting ARC.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker.webp",
+    "rarity": "Epic",
+    "subcategory": "Special",
+    "ammoType": "launcher",
+    "baseStats": {
+      "damage": 100,
+      "fireRate": 20.3,
+      "range": 38.9,
+      "stability": 97.2,
+      "agility": 67.9,
+      "stealth": 1,
+      "magazineSize": 5,
+      "weight": 7,
+      "firingMode": null,
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "hullcracker-i",
+        "value": 10000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker.webp",
+        "stats": {
+          "damage": 100,
+          "fireRate": 20.3,
+          "range": 38.9,
+          "stability": 97.2,
+          "agility": 67.9,
+          "stealth": 1,
+          "magazineSize": 5,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "hullcracker-ii",
+        "value": 13000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker-ii.webp",
+        "stats": {
+          "damage": 100,
+          "fireRate": 23.954,
+          "range": 38.9,
+          "stability": 97.2,
+          "agility": 67.9,
+          "stealth": 1,
+          "magazineSize": 5,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 18
+        },
+        "activeModifiers": {
+          "increasedFireRate": 18,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "hullcracker-iii",
+        "value": 17000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker-iii.webp",
+        "stats": {
+          "damage": 100,
+          "fireRate": 27.405,
+          "range": 38.9,
+          "stability": 97.2,
+          "agility": 67.9,
+          "stealth": 1,
+          "magazineSize": 5,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 35
+        },
+        "activeModifiers": {
+          "increasedFireRate": 35,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "hullcracker-iv",
+    "baseName": "Hullcracker IV",
+    "description": "Fires explosive projectiles that only detonate when hitting ARC",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker-iv.webp",
+    "rarity": "Epic",
+    "subcategory": "Special",
+    "ammoType": "launcher",
+    "baseStats": {
+      "damage": 100,
+      "fireRate": 20.3,
+      "range": 38.9,
+      "stability": 97.2,
+      "agility": 67.9,
+      "stealth": 1,
+      "magazineSize": 5,
+      "weight": 7,
+      "firingMode": null,
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "hullcracker-iv",
+        "value": 22000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker-iv.webp",
+        "stats": {
+          "damage": 100,
+          "fireRate": 31.059,
+          "range": 38.9,
+          "stability": 97.2,
+          "agility": 67.9,
+          "stealth": 1,
+          "magazineSize": 5,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 53
+        },
+        "activeModifiers": {
+          "increasedFireRate": 53,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "il-toro",
+    "baseName": "Il Toro",
+    "description": "Pump-action shotgun with large bullet spread, sharp falloff, and high damage output.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/il%20Toro-i.webp",
+    "rarity": "Uncommon",
+    "subcategory": "Shotgun",
+    "ammoType": "shotgun",
+    "baseStats": {
+      "damage": 67.5,
+      "fireRate": 14.3,
+      "range": 20,
+      "stability": 80.6,
+      "agility": 61.1,
+      "stealth": 18,
+      "magazineSize": 5,
+      "weight": 8,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "il-toro-i",
+        "value": 5000,
+        "workbench": "Weapon Bench 1",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/il%20Toro-i.webp",
+        "stats": {
+          "damage": 67.5,
+          "fireRate": 14.3,
+          "range": 20,
+          "stability": 80.6,
+          "agility": 61.1,
+          "stealth": 18,
+          "magazineSize": 5,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "il-toro-ii",
+        "value": 7000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/il-toro-ii.webp",
+        "stats": {
+          "damage": 67.5,
+          "fireRate": 16.302000000000003,
+          "range": 20,
+          "stability": 80.6,
+          "agility": 58,
+          "stealth": 18,
+          "magazineSize": 6,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 14
+        },
+        "activeModifiers": {
+          "increasedFireRate": 14,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "il-toro-iiii",
+        "value": 10000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/il-toro-iiii.webp",
+        "stats": {
+          "damage": 67.5,
+          "fireRate": 19.305000000000003,
+          "range": 20,
+          "stability": 80.6,
+          "agility": 61.1,
+          "stealth": 18,
+          "magazineSize": 7,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 35
+        },
+        "activeModifiers": {
+          "increasedFireRate": 35,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "il-toro-iv",
+        "value": 13000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/il-toro-iv.webp",
+        "stats": {
+          "damage": 67.5,
+          "fireRate": 21.450000000000003,
+          "range": 20,
+          "stability": 80.6,
+          "agility": 61.1,
+          "stealth": 18,
+          "magazineSize": 8,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 50
+        },
+        "activeModifiers": {
+          "increasedFireRate": 50,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "jupiter",
+    "baseName": "Jupiter",
+    "description": "A bolt-action sniper rifle with exceptional damage output and accuracy, but slow handling.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/jupiter-i.webp",
+    "rarity": "Legendary",
+    "subcategory": "Sniper Rifle",
+    "ammoType": "heavy",
+    "baseStats": {
+      "damage": 55,
+      "fireRate": 7.67,
+      "range": 71.7,
+      "stability": 73.5,
+      "agility": 39.2,
+      "stealth": 5,
+      "magazineSize": 5,
+      "weight": 9,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "jupiter-i",
+        "value": 34000,
+        "workbench": "Weapon Bench 3",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/jupiter-i.webp",
+        "stats": {
+          "damage": 55,
+          "fireRate": 7.67,
+          "range": 71.7,
+          "stability": 73.5,
+          "agility": 39.2,
+          "stealth": 5,
+          "magazineSize": 5,
+          "weight": 9,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "kettle",
+    "baseName": "Kettle",
+    "description": "Semi-automatic assault rifle. Quick and accurate, but has low bullet velocity and takes a long time reload.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/kettle-i.webp",
+    "rarity": "Common",
+    "subcategory": "Assault Rifle",
+    "ammoType": "light",
+    "baseStats": {
+      "damage": 10,
+      "fireRate": 28,
+      "range": 42.8,
+      "stability": 69.8,
+      "agility": 58.5,
+      "stealth": 26,
+      "magazineSize": 20,
+      "weight": 7,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "kettle-i",
+        "value": 840,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/kettle-i.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 42.8,
+          "stability": 69.8,
+          "agility": 58.5,
+          "stealth": 26,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "kettle-ii",
+        "value": 2000,
+        "workbench": "Gunsmith I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/kettle-ii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 42.8,
+          "stability": 69.8,
+          "agility": 58.5,
+          "stealth": 26,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 25
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 25,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "kettle-iii",
+        "value": 3000,
+        "workbench": null,
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/kettle-iii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 42.8,
+          "stability": 69.8,
+          "agility": 58.5,
+          "stealth": 26,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 50
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 50,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "kettle-iv",
+        "value": 5000,
+        "workbench": "Gunsmith I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/kettle-iv.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 28,
+          "range": 42.8,
+          "stability": 69.8,
+          "agility": 58.5,
+          "stealth": 26,
+          "magazineSize": 20,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 75
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 75,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "osprey",
+    "baseName": "Osprey",
+    "description": "A scoped bolt-action sniper rifle with reliable damage output and accuracy.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/osprey-i.webp",
+    "rarity": "Rare",
+    "subcategory": "Sniper Rifle",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 45,
+      "fireRate": 17.7,
+      "range": 80.3,
+      "stability": 85.4,
+      "agility": 45.9,
+      "stealth": 12,
+      "magazineSize": 8,
+      "weight": 7,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "osprey-i",
+        "value": 7000,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/osprey-i.webp",
+        "stats": {
+          "damage": 45,
+          "fireRate": 17.7,
+          "range": 80.3,
+          "stability": 85.4,
+          "agility": 45.9,
+          "stealth": 12,
+          "magazineSize": 8,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "osprey-ii",
+        "value": 10000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/osprey-ii.webp",
+        "stats": {
+          "damage": 45,
+          "fireRate": 17.7,
+          "range": 80.3,
+          "stability": 85.4,
+          "agility": 45.9,
+          "stealth": 12,
+          "magazineSize": 8,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 12.5
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 12.5,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "osprey-iii",
+        "value": 13000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/osprey-iii.webp",
+        "stats": {
+          "damage": 45,
+          "fireRate": 17.7,
+          "range": 80.3,
+          "stability": 85.4,
+          "agility": 45.9,
+          "stealth": 12,
+          "magazineSize": 8,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 25
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 25,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "osprey-iv",
+        "value": 17000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/osprey-iv.webp",
+        "stats": {
+          "damage": 45,
+          "fireRate": 17.7,
+          "range": 80.3,
+          "stability": 85.4,
+          "agility": 45.9,
+          "stealth": 12,
+          "magazineSize": 8,
+          "weight": 7,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 37.5
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 37.5,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "rattler",
+    "baseName": "Rattler",
+    "description": "Fully automatic assault rifle. A cheap offensive option, but has to be reloaded 2 bullets at a time.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/rattler-i.webp",
+    "rarity": "Common",
+    "subcategory": "Assault Rifle",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 9,
+      "fireRate": 33.3,
+      "range": 56.2,
+      "stability": 72.2,
+      "agility": 54.8,
+      "stealth": 14,
+      "magazineSize": 10,
+      "weight": 6,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "rattler-i",
+        "value": 1750,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/rattler-i.webp",
+        "stats": {
+          "damage": 9,
+          "fireRate": 33.3,
+          "range": 56.2,
+          "stability": 72.2,
+          "agility": 54.8,
+          "stealth": 14,
+          "magazineSize": 10,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "rattler-ii",
+        "value": 3000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/rattler-ii.webp",
+        "stats": {
+          "damage": 9,
+          "fireRate": 33.3,
+          "range": 56.2,
+          "stability": 72.2,
+          "agility": 54.8,
+          "stealth": 14,
+          "magazineSize": 14,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 23,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "rattler-iii",
+        "value": 5000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/rattler-iii.webp",
+        "stats": {
+          "damage": 9,
+          "fireRate": 33.3,
+          "range": 56.2,
+          "stability": 72.2,
+          "agility": 54.8,
+          "stealth": 14,
+          "magazineSize": 18,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "rattler-iv",
+        "value": 7000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/rattler-iv.webp",
+        "stats": {
+          "damage": 9,
+          "fireRate": 33.3,
+          "range": 56.2,
+          "stability": 72.2,
+          "agility": 54.8,
+          "stealth": 14,
+          "magazineSize": 22,
+          "weight": 6,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedDurabilityBurnRate": 70
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 70,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "renegade",
+    "baseName": "Renegade",
+    "description": "Lever-action battle rifle with high damage output, accuracy, and headshot damage.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/renegade-i.webp",
+    "rarity": "Rare",
+    "subcategory": "Rifle",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 35,
+      "fireRate": 21,
+      "range": 68.8,
+      "stability": 85.7,
+      "agility": 55.8,
+      "stealth": 16,
+      "magazineSize": 8,
+      "weight": 10,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "renegade-i",
+        "value": 7000,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/renegade-i.webp",
+        "stats": {
+          "damage": 35,
+          "fireRate": 21,
+          "range": 68.8,
+          "stability": 85.7,
+          "agility": 55.8,
+          "stealth": 16,
+          "magazineSize": 8,
+          "weight": 10,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "renegade-ii",
+        "value": 10000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/renegade-ii.webp",
+        "stats": {
+          "damage": 35,
+          "fireRate": 26.25,
+          "range": 68.8,
+          "stability": 85.7,
+          "agility": 55.8,
+          "stealth": 16,
+          "magazineSize": 8,
+          "weight": 10,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 25,
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 25,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 23,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "renegade-iii",
+        "value": 13000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/renegade-iii.webp",
+        "stats": {
+          "damage": 35,
+          "fireRate": 31.5,
+          "range": 68.8,
+          "stability": 85.7,
+          "agility": 55.8,
+          "stealth": 16,
+          "magazineSize": 8,
+          "weight": 10,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 50,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 50,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 46,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "renegade-iv",
+        "value": 17000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/renegade-iv.webp",
+        "stats": {
+          "damage": 35,
+          "fireRate": 36.75,
+          "range": 68.8,
+          "stability": 85.7,
+          "agility": 55.8,
+          "stealth": 16,
+          "magazineSize": 8,
+          "weight": 10,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 75,
+          "reducedDurabilityBurnRate": 70
+        },
+        "activeModifiers": {
+          "increasedFireRate": 75,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 70,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "stitcher",
+    "baseName": "Stitcher",
+    "description": "Full automatic SMG. Deals good damage, but has quite a low fire-rate and can be hard to control.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/stitcher-ii.webp",
+    "rarity": "Common",
+    "subcategory": "SMG",
+    "ammoType": "light",
+    "baseStats": {
+      "damage": 7,
+      "fireRate": 45.3,
+      "range": 42.1,
+      "stability": 45.3,
+      "agility": 73.8,
+      "stealth": 19,
+      "magazineSize": 20,
+      "weight": 5,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "stitcher-i",
+        "value": 800,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/stitcher-ii.webp",
+        "stats": {
+          "damage": 7,
+          "fireRate": 45.3,
+          "range": 42.1,
+          "stability": 45.3,
+          "agility": 73.8,
+          "stealth": 19,
+          "magazineSize": 20,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "stitcher-ii",
+        "value": 2000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/stitcher-ii.webp",
+        "stats": {
+          "damage": 7,
+          "fireRate": 45.3,
+          "range": 42.1,
+          "stability": 45.3,
+          "agility": 73.8,
+          "stealth": 19,
+          "magazineSize": 20,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "stitcher-iii",
+        "value": 3000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/stitcher-iii.webp",
+        "stats": {
+          "damage": 7,
+          "fireRate": 45.3,
+          "range": 42.1,
+          "stability": 45.3,
+          "agility": 73.8,
+          "stealth": 19,
+          "magazineSize": 20,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 26
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "stitcher-iv",
+        "value": 5000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/stitcher-iv.webp",
+        "stats": {
+          "damage": 7,
+          "fireRate": 45.3,
+          "range": 42.1,
+          "stability": 45.3,
+          "agility": 73.8,
+          "stealth": 19,
+          "magazineSize": 20,
+          "weight": 5,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 40
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "tempest",
+    "baseName": "Tempest",
+    "description": "Fully automatic assault rifle with moderate fire rate and accuracy.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/tempest-i.webp",
+    "rarity": "Epic",
+    "subcategory": "Assault Rifle",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 10,
+      "fireRate": 36.7,
+      "range": 55.9,
+      "stability": 78.9,
+      "agility": 46,
+      "stealth": 14,
+      "magazineSize": 25,
+      "weight": 11,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "tempest-i",
+        "value": 0,
+        "workbench": "Weapon Bench 3",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/tempest-i.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 36.7,
+          "range": 55.9,
+          "stability": 78.9,
+          "agility": 46,
+          "stealth": 14,
+          "magazineSize": 25,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "tempest-ii",
+        "value": 17000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/tempest-ii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 36.7,
+          "range": 55.9,
+          "stability": 78.9,
+          "agility": 46,
+          "stealth": 14,
+          "magazineSize": 25,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 13
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "tempest-iii",
+        "value": 22000,
+        "workbench": "Weapon bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/tempest-iii.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 36.7,
+          "range": 55.9,
+          "stability": 78.9,
+          "agility": 46,
+          "stealth": 14,
+          "magazineSize": 25,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 26
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "tempest-iv",
+        "value": 0,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/tempest-iv.webp",
+        "stats": {
+          "damage": 10,
+          "fireRate": 36.7,
+          "range": 55.9,
+          "stability": 78.9,
+          "agility": 46,
+          "stealth": 14,
+          "magazineSize": 25,
+          "weight": 11,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 40
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "torrente",
+    "baseName": "Torrente",
+    "description": "Has large ammo capacity, but is only accurate while crouched. ",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/torrente-i.webp",
+    "rarity": "Rare",
+    "subcategory": "LMG",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 8,
+      "fireRate": 58.3,
+      "range": 49.9,
+      "stability": 74.2,
+      "agility": 39.8,
+      "stealth": 1,
+      "magazineSize": 60,
+      "weight": 12,
+      "firingMode": "Auto",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "torrente-i",
+        "value": 7000,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/torrente-i.webp",
+        "stats": {
+          "damage": 8,
+          "fireRate": 58.3,
+          "range": 49.9,
+          "stability": 74.2,
+          "agility": 39.8,
+          "stealth": 1,
+          "magazineSize": 60,
+          "weight": 12,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "torrente-ii",
+        "value": 10000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/torrente-ii.webp",
+        "stats": {
+          "damage": 8,
+          "fireRate": 58.3,
+          "range": 49.9,
+          "stability": 74.2,
+          "agility": 37.7,
+          "stealth": 1,
+          "magazineSize": 70,
+          "weight": 12,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 15,
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 15,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 23,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "torrente-iii",
+        "value": 13000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/torrente-iii.webp",
+        "stats": {
+          "damage": 8,
+          "fireRate": 58.3,
+          "range": 49.9,
+          "stability": 74.2,
+          "agility": 37.7,
+          "stealth": 1,
+          "magazineSize": 80,
+          "weight": 12,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 30,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 30,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 46,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "torrente-iv",
+        "value": 15000,
+        "workbench": "Weapon Bench I",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/torrente-iv.webp",
+        "stats": {
+          "damage": 8,
+          "fireRate": 48.3,
+          "range": 49.9,
+          "stability": 74.2,
+          "agility": 37.7,
+          "stealth": 1,
+          "magazineSize": 30,
+          "weight": 12,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "reducedReloadTime": 45,
+          "reducedDurabilityBurnRate": 70
+        },
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 45,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 70,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "venator",
+    "baseName": "Venator",
+    "description": "Semi-automatic pistol. Fires two shots at a time.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/venator-i.webp",
+    "rarity": "Rare",
+    "subcategory": "Pistol",
+    "ammoType": "medium",
+    "baseStats": {
+      "damage": 18,
+      "fireRate": 36.7,
+      "range": 48.4,
+      "stability": 61.3,
+      "agility": 76.4,
+      "stealth": 12,
+      "magazineSize": 10,
+      "weight": 2,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "venator-i",
+        "value": 7000,
+        "workbench": "Weapon Bench 2",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/venator-i.webp",
+        "stats": {
+          "damage": 18,
+          "fireRate": 36.7,
+          "range": 48.4,
+          "stability": 61.3,
+          "agility": 76.4,
+          "stealth": 12,
+          "magazineSize": 10,
+          "weight": 2,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "venator-ii",
+        "value": 0,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/venator-ii.webp",
+        "stats": {
+          "damage": 18,
+          "fireRate": 44.774,
+          "range": 48.4,
+          "stability": 61.3,
+          "agility": 76.4,
+          "stealth": 12,
+          "magazineSize": 10,
+          "weight": 2,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 22,
+          "reducedReloadTime": 16,
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 22,
+          "reducedReloadTime": 16,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 23,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "venator-iii",
+        "value": 0,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/venator-iii.webp",
+        "stats": {
+          "damage": 18,
+          "fireRate": 52.848,
+          "range": 48.4,
+          "stability": 61.3,
+          "agility": 76.4,
+          "stealth": 12,
+          "magazineSize": 10,
+          "weight": 2,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 44,
+          "reducedReloadTime": 33,
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 44,
+          "reducedReloadTime": 33,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "venator-iv",
+        "value": 10540,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/venator-iv.webp",
+        "stats": {
+          "damage": 18,
+          "fireRate": 60.92200000000001,
+          "range": 48.4,
+          "stability": 61.3,
+          "agility": 76.4,
+          "stealth": 12,
+          "magazineSize": 10,
+          "weight": 2,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 66,
+          "reducedReloadTime": 50,
+          "reducedDurabilityBurnRate": 23
+        },
+        "activeModifiers": {
+          "increasedFireRate": 66,
+          "reducedReloadTime": 50,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "vulcano",
+    "baseName": "Vulcano",
+    "description": "Semi-automatic shotgun with good bullet spread but sharp falloff.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-i.webp",
+    "rarity": "Epic",
+    "subcategory": "Shotgun",
+    "ammoType": "shotgun",
+    "baseStats": {
+      "damage": 49.5,
+      "fireRate": 26.3,
+      "range": 22,
+      "stability": 64.6,
+      "agility": 66.3,
+      "stealth": 15,
+      "magazineSize": 6,
+      "weight": 8,
+      "firingMode": "Single",
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "vulcano-i",
+        "value": 10000,
+        "workbench": "Weapon Bench 3",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-i.webp",
+        "stats": {
+          "damage": 49.5,
+          "fireRate": 26.3,
+          "range": 22,
+          "stability": 64.6,
+          "agility": 66.3,
+          "stealth": 15,
+          "magazineSize": 6,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "II",
+        "levelNumber": 2,
+        "id": "vulcano-ii",
+        "value": 13000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-ii.webp",
+        "stats": {
+          "damage": 49.5,
+          "fireRate": 28.930000000000003,
+          "range": 22,
+          "stability": 64.6,
+          "agility": 66.3,
+          "stealth": 15,
+          "magazineSize": 6,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 13,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 10,
+          "reducedReloadTime": 13,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 46,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "III",
+        "levelNumber": 3,
+        "id": "vulcano-iii",
+        "value": 17000,
+        "workbench": "Weapon Bench",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-iii.webp",
+        "stats": {
+          "damage": 49.5,
+          "fireRate": 31.56,
+          "range": 22,
+          "stability": 64.6,
+          "agility": 66.3,
+          "stealth": 15,
+          "magazineSize": 6,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 26,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 20,
+          "reducedReloadTime": 26,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      },
+      {
+        "level": "IV",
+        "levelNumber": 4,
+        "id": "vulcano-iv",
+        "value": 22000,
+        "workbench": "Gunsmith III",
+        "icon": "https://cdn.metaforge.app/arc-raiders/icons/vulcano-iv.webp",
+        "stats": {
+          "damage": 49.5,
+          "fireRate": 34.190000000000005,
+          "range": 22,
+          "stability": 64.6,
+          "agility": 66.3,
+          "stealth": 15,
+          "magazineSize": 6,
+          "weight": 8,
+          "damagePerSecond": 0
+        },
+        "modifiers": {
+          "increasedFireRate": 30,
+          "reducedReloadTime": 40,
+          "reducedDurabilityBurnRate": 46
+        },
+        "activeModifiers": {
+          "increasedFireRate": 30,
+          "reducedReloadTime": 40,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  }
+]

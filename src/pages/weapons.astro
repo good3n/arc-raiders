@@ -1,11 +1,14 @@
-
 ---
-import Layout from '@layouts/Layout.astro';
-import WeaponExplorer from '@components/WeaponExplorer.tsx';
+import Layout from '@layouts/Layout.astro'
+import WeaponExplorer from '@components/WeaponExplorer.tsx'
+import DataDisclaimer from '@components/DataDisclaimer.astro'
 ---
 
 <Layout title="Items | ARCIndex.app">
   <section class="mt-6">
+    <div class="mb-10">
+      <DataDisclaimer />
+    </div>
     <WeaponExplorer client:load />
   </section>
 </Layout>

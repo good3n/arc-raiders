@@ -230,7 +230,7 @@ export default function ArcExplorer() {
 
     // Default rendering for other types
     return (
-      <article key={item.id || index} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-white">
+      <article key={item.id || index} className="rounded-2xl border border-slate-200 shadow-sm p-4 bg-[#1B0F21]">
         <CardRow row={item} index={index} />
       </article>
     );
@@ -324,7 +324,7 @@ export default function ArcExplorer() {
       </div>
 
       {/* Results */}
-      <section className="grid gap-3">
+      <section className="grid grid-cols-3 gap-3">
         {filtered && filtered.length > 0 ? (
           filtered.slice(0, 200).map((row: any, i: number) => renderItem(row, i))
         ) : (
@@ -338,29 +338,31 @@ export default function ArcExplorer() {
 }
 
 function CardRow({ row, index }: { row: any; index: number }) {
+  console.log(row);
   const [open, setOpen] = useState(false);
   const title = row?.name || row?.title || row?.displayName || row?.id || `Row ${index + 1}`;
   const subtitle = row?.rarity || row?.type || row?.category || row?.tier || row?.map || '';
+  const description = row?.description || row?.flavor_text || row?.notes || row?.description || '';
+  const icon = row?.icon || row?.image || '';
 
   return (
     <div>
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="font-semibold">{String(title)}</div>
-          {subtitle ? <div className="text-xs text-slate-500">{String(subtitle)}</div> : null}
+      <header className="flex items-start justify-between gap-3">
+        <div className="flex gap-2">
+          <div className={`item-icon-wrap w-16 h-16 shrink-0 ${String(subtitle).toLowerCase()}`}>
+            <img src={icon} alt={title} className="w-full h-full object-contain block" />
+          </div>
+          <div>
+            <div className="font-semibold text-xl">{String(title)}</div>
+          </div>
         </div>
-        <button
-          onClick={() => setOpen((s) => !s)}
-          className="inline-flex items-center gap-2 rounded-2xl px-3 py-1.5 text-xs border border-slate-200"
-        >
-          {open ? 'Hide' : 'Details'}
-        </button>
-      </div>
-      {open ? (
-        <pre className="mt-3 text-xs overflow-auto bg-slate-50 border border-slate-200 rounded-xl p-3">
-          {JSON.stringify(row, null, 2)}
-        </pre>
+      </header>
+      {subtitle ? (
+        <div className={`item-tag mt-2 ${String(subtitle).toLowerCase()}`}>
+          {String(subtitle)}
+        </div>
       ) : null}
+      <p className="mt-2" dangerouslySetInnerHTML={{ __html: description }}></p>
     </div>
   );
 }

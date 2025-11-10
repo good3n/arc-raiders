@@ -1,4 +1,44 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .item-icon-wrap {
+    @apply border-2 rounded-md;
+
+    &.common {
+      @apply border-gray-600/50 bg-gray-600/10;
+    }
+    &.uncommon {
+      @apply border-green-600/50 bg-green-600/10;
+    }
+    &.rare {
+      @apply border-blue-600/50 bg-blue-600/10;
+    }
+    &.epic {
+      @apply border-purple-600/50 bg-purple-600/10;
+    }
+    &.legendary {
+      @apply border-orange-600/50 bg-orange-600/10;
+    }
+  }
+  .item-tag {
+    @apply px-3 py-1 rounded text-xs font-semibold uppercase tracking-wide border inline-block;
+
+    &.common {
+      @apply bg-gray-500/25 text-gray-300 border-gray-600/50;
+    }
+    &.uncommon {
+      @apply bg-green-500/25 text-green-300 border-green-600/50;
+    }
+    &.rare {
+      @apply bg-blue-500/25 text-blue-300 border-blue-600/50;
+    }
+    &.epic {
+      @apply bg-purple-500/25 text-purple-300 border-purple-600/50;
+    }
+    &.legendary {
+      @apply bg-orange-500/25 text-orange-300 border-orange-600/50;
+    }
+  }
+}

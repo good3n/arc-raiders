@@ -3,15 +3,15 @@ import svgLogo from '@assets/images/svg/logo.svg';
 ---
 
 <header class="sticky top-0 z-10 bg-[#130918]/60 backdrop-blur">
-  <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
+  <div class="mx-auto max-w-[1400px] px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
       <img src={svgLogo.src} alt="Logo" class="w-20 block" />
       <div>
         <h1 class="text-5xl font-black">
-          ARCIndex.app
-      </h1>
+          <span class="italic">A</span>RCIndex.app
+        </h1>
       </div>
-    </div>
+    </a>
     <ul class="flex items-center gap-4 font-medium text-lg">
       <li>
         <a href="/items/">Items</a>
@@ -32,7 +32,9 @@ import svgLogo from '@assets/images/svg/logo.svg';
         <a href="/arcs/">Arcs</a>
       </li>
     </ul>
-    <a class="inline-flex items-center gap-2 rounded-2xl px-4 py-2 shadow-sm hover:shadow md:text-sm text-xs border border-slate-200"
-       href="https://metaforge.app/arc-raiders/api" target="_blank" rel="noreferrer">API Docs ↗</a>
+    <a
+      class="hidden items-center gap-2 rounded-2xl px-4 py-2 shadow-sm hover:shadow md:text-sm text-xs border border-slate-200"
+      href="https://metaforge.app/arc-raiders/api" target="_blank" rel="noreferrer">API Docs ↗
+    </a>
   </div>
 </header>

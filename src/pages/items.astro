@@ -1,0 +1,11 @@
+
+---
+import Layout from '@layouts/Layout.astro';
+import ItemExplorer from '@components/ItemExplorer.tsx';
+---
+
+<Layout title="Items | ARCIndex.app">
+  <section class="mt-6">
+    <ItemExplorer client:load />
+  </section>
+</Layout>

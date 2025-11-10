@@ -11,6 +11,10 @@ interface ArcCardProps {
 }
 
 export default function ArcCard({ arc }: ArcCardProps) {
+  // bombardier image is not in the data, so we need to set it manually
+  if (arc.name === 'Bombardier') {
+    arc.image = 'https://arcraiders.wiki/w/images/7/76/ARC_Bombardier.png';
+  }
   return (
     <div className="rounded-2xl overflow-hidden bg-[#120918]">
       {/* Image section with gradient overlay */}

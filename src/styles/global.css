@@ -22,8 +22,9 @@
       @apply border-orange-600/50 bg-orange-600/10;
     }
   }
+
   .item-tag {
-    @apply px-3 py-1 rounded text-xs font-semibold uppercase tracking-wide border inline-block;
+    @apply px-3 pt-[2px] pb-1 rounded text-xs font-semibold uppercase tracking-wide border inline-block;
 
     &.common {
       @apply bg-gray-500/25 text-gray-300 border-gray-600/50;

@@ -1,0 +1,11 @@
+
+---
+import Layout from '@layouts/Layout.astro';
+import MapExplorer from '@components/MapExplorer.tsx';
+---
+
+<Layout title="Maps | ARCIndex.app">
+  <section class="mt-6">
+    <MapExplorer client:load />
+  </section>
+</Layout>

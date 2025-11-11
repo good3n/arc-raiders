@@ -358,7 +358,7 @@ export default function WeaponExplorer() {
       {/* Results */}
       <section className="relative flex flex-col items-start items-center gap-3 pt-10">
         {/* Status */}
-        <div className="absolute left-0 top-0">
+        <div className="absolute left-0 right-0 top-0 text-center">
           {loading
             ? 'Loading weapons…'
             : error
@@ -373,7 +373,7 @@ export default function WeaponExplorer() {
             </article>
           ))
         ) : (
-          <div className="text-sm">No weapons found.</div>
+          <div className="italic">No weapons found. Try adjusting your filters.</div>
         )}
       </section>
     </div>
@@ -534,9 +534,9 @@ function WeaponCard({ weapon, index }: { weapon: any; index: number }) {
               key={level.id || idx}
               onClick={() => setSelectedLevel(idx)}
               className={classNames(
-                'rounded-md px-3 py-1 text-sm font-medium transition-all',
+                'flex aspect-square h-8 w-8 shrink-0 items-center justify-center rounded-md font-medium transition-all',
                 idx === selectedLevel
-                  ? 'text-white bg-[#130918]'
+                  ? 'bg-dark text-light'
                   : 'bg-[#CAC1AF] text-[#130918] hover:bg-[#B1A793]'
               )}
             >

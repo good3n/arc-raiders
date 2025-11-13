@@ -151,6 +151,8 @@ export default function ArcExplorer() {
 
     if (!query) return list
 
+    list = list.filter((arc) => arc.description && arc.description.trim() !== '')
+
     const q = query.toLowerCase()
     return list.filter((arc) => {
       // Search in ARC-specific fields

@@ -9,17 +9,52 @@ const getLinkClasses = (href: string) => {
 }
 ---
 
-<header class="fixed left-0 top-0 z-10 bg-[#130918]/60 backdrop-blur">
-  <div class="container flex items-center justify-between py-4">
-    <a href="/" class="flex items-center gap-3">
-      <img src={svgLogo.src} alt="Logo" class="block w-56" />
+<header
+  class="fixed bottom-0 left-0 top-0 z-10 w-60 border-r border-light/10 bg-[#130918]/60 px-4 pt-10 backdrop-blur"
+>
+  <div class="">
+    <a href="/" class="block w-full">
+      <img src={svgLogo.src} alt="Logo" class="block h-full w-full" />
     </a>
-    <ul class="flex items-center gap-4 text-xl font-semibold">
+    <ul class="mt-10 flex flex-col gap-7 font-medium">
       <li>
-        <a href="/items/" class={getLinkClasses('/items/')}> Items </a>
+        <a href="/items/" class={getLinkClasses('/items/')}>
+          <span class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 700 765">
+              <path
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                stroke-width="63.6667"
+                d="M636.5 351.5H63.8334v381.667H636.5zm31.667-127.333H31.8334V351.5H668.167z"
+              ></path>
+              <path
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                stroke-width="63.6667"
+                d="M350.5 351.5h-.333v381.667h.333z"></path>
+              <path
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                stroke-width="63.6667"
+                d="M636.5 542.167v-.334H63.8334v.334zM191.167 33.1667c42.169 0 82.611 16.7518 112.43 46.57 29.818 29.8183 46.57 70.2603 46.57 112.4303V225.5h-95.334c-16.834.001-33.502-3.336-49.038-9.819-15.536-6.482-29.633-15.981-41.475-27.946-11.841-11.966-21.193-26.161-27.513-41.764s-9.483-32.304-9.307-49.1376c0-16.8855 6.708-33.0793 18.648-45.0191 11.939-11.9399 28.133-18.6476 45.019-18.6476ZM445.5 224.167h-95.333v-33.334c0-42.169 16.751-82.611 46.57-112.4296 29.818-29.8183 70.26-46.57 112.43-46.57 8.474-.0019 16.863 1.688 24.676 4.9706 7.812 3.2826 14.891 8.0919 20.821 14.1458 5.93 6.054 10.591 13.2308 13.711 21.1097 3.12 7.879 4.636 16.3015 4.458 24.7739 0 33.7706-13.415 66.1586-37.295 90.0386-23.879 23.879-56.267 37.295-90.038 37.295Z"
+              ></path>
+            </svg>
+          </span>
+          Items
+        </a>
       </li>
       <li>
-        <a href="/weapons/" class={getLinkClasses('/weapons/')}> Weapons </a>
+        <a href="/weapons/" class={getLinkClasses('/weapons/')}>
+          <span class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 800 800">
+              <path
+                fill="currentColor"
+                d="M695.8 350C674.7 224.4 575.6 125.3 450 104.2V0H350v104.2C224.4 125.3 125.3 224.4 104.2 350H0v100h104.2C125.3 575.6 224.4 674.7 350 695.8V800h100V695.8C575.6 674.7 674.7 575.65 695.8 450H800V350zM541.4 541.4C503.6 579.2 453.45 600 400 600s-103.6-20.8-141.4-58.6S200 453.45 200 400s20.8-103.6 58.6-141.4S346.55 200 400 200s103.6 20.8 141.4 58.6S600 346.55 600 400s-20.8 103.6-58.6 141.4M400 300c-55.15 0-100 44.85-100 100s44.85 100 100 100 100-44.85 100-100-44.85-100-100-100"
+              ></path>
+            </svg>
+          </span>
+          Weapons
+        </a>
       </li>
       <li class="hidden">
         <a href="/quests/" class={getLinkClasses('/quests/')}> Quests </a>
@@ -32,7 +67,17 @@ const getLinkClasses = (href: string) => {
       </li>
       <li>
         <a href="/arcs/" class={getLinkClasses('/arcs/')}>
-          <span class="italic">A</span>rcs
+          <span class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 767 448">
+              <path
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                stroke-width="64"
+                d="M447.333 319.667 543 286.333v-96c0-16.916-6.697-33.144-18.627-45.137s-28.124-18.775-45.04-18.863h-192c-16.916.088-33.109 6.87-45.039 18.863-11.931 11.993-18.628 28.221-18.627 45.137v96l95.666 33.334m128 0c0 35.346-28.653 64-64 64-35.346 0-64-28.654-64-64m128 0c0-35.347-28.653-64-64-64-35.346 0-64 28.653-64 64m-95.666-128H0m766.667 0H543M0 32h191.667M575 32h191.667M96 32v159.667M671 32v159.667M96 415.333h63.667v-95.666l64-32M671 415.333h-64v-95.666l-64-32"
+              ></path>
+            </svg>
+          </span>
+          <span class="italic">A</span>RCs
         </a>
       </li>
     </ul>
@@ -45,3 +90,16 @@ const getLinkClasses = (href: string) => {
     </a>
   </div>
 </header>
+
+<style>
+  li a {
+    @apply flex items-center;
+  }
+  .icon-wrap {
+    @apply mr-2 block h-5 w-5;
+
+    svg {
+      @apply block h-full w-full;
+    }
+  }
+</style>

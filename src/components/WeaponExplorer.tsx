@@ -182,6 +182,7 @@ export default function WeaponExplorer() {
   // Get unique ammo types for weapons
   const ammoTypes = useMemo(() => {
     const types = new Set<string>()
+    const ammoOrder = ['light', 'medium', 'heavy', 'shotgun', 'launcher', 'energy']
     data.forEach((weapon) => {
       if (weapon.ammoType) {
         // Normalize the ammo type to prevent duplicates
@@ -190,9 +191,11 @@ export default function WeaponExplorer() {
       }
     })
     // Sort and capitalize for display
-    return Array.from(types)
-      .sort()
-      .map((type) => type.charAt(0).toUpperCase() + type.slice(1))
+    return Array.from(types).sort((a, b) => {
+      const aIndex = ammoOrder.findIndex((r) => r.toLowerCase() === a.toLowerCase())
+      const bIndex = ammoOrder.findIndex((r) => r.toLowerCase() === b.toLowerCase())
+      return aIndex - bIndex
+    })
   }, [data])
 
   // Filter data based on search query and filters
@@ -270,36 +273,43 @@ export default function WeaponExplorer() {
   ].filter((group) => group.options.length > 0)
 
   return (
-    <div className="grid grid-cols-[300px_1fr] gap-10">
-      <FilterSidebar
-        searchValue={query}
-        onSearchChange={setQuery}
-        searchPlaceholder="Type to filter weapons…"
-        filterGroups={filterGroups}
-        className="scrollbar-hide h-[calc(100vh-7rem)] overflow-y-auto pb-10"
-      />
-
-      {/* Results */}
-      <section className="relative flex flex-col items-start items-center gap-3 pt-10">
+    <div>
+      <FilterSidebar filterGroups={filterGroups} type="weapons" />
+      <div className="pt-6">
         {/* Status */}
-        <div className="absolute left-0 right-0 top-0 text-center">
-          {loading
-            ? 'Loading weapons…'
-            : error
-              ? `Error: ${error}`
-              : `Showing ${filtered.length} weapons`}
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            {loading
+              ? 'Loading weapons…'
+              : error
+                ? `Error: ${error}`
+                : `Showing ${filtered.length} weapons`}
+          </div>
+          {/* Search Control */}
+          <div className="w-full max-w-md">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              type="search"
+              placeholder="Search weapons…"
+              className="border-gray-300 w-full rounded-lg border px-3 py-2"
+            />
+          </div>
         </div>
 
-        {filtered.length > 0 ? (
-          filtered.map((weapon) => (
-            <span key={weapon.id} className="inline-block w-full">
-              <ItemCard item={weapon} isWeapon={true} />
-            </span>
-          ))
-        ) : (
-          <div className="italic">No weapons found. Try adjusting your filters.</div>
-        )}
-      </section>
+        {/* Results */}
+        <section className="grid grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-3">
+          {filtered.length > 0 ? (
+            filtered.map((weapon) => (
+              <span key={weapon.id} className="inline-block w-full">
+                <ItemCard item={weapon} isWeapon={true} />
+              </span>
+            ))
+          ) : (
+            <div className="italic">No weapons found. Try adjusting your filters.</div>
+          )}
+        </section>
+      </div>
     </div>
   )
 }

@@ -284,30 +284,24 @@ export default function ItemExplorer() {
   ].filter((group) => group.options.length > 0)
 
   return (
-    <div className="grid grid-cols-[280px_1fr] gap-4">
-      <FilterSidebar
-        searchValue={query}
-        onSearchChange={setQuery}
-        searchPlaceholder="Type to filter items…"
-        filterGroups={filterGroups}
-        className="h-72"
-      />
+    <div>
+      <FilterSidebar filterGroups={filterGroups} type="items" />
+
+      {/* Status */}
+      <div className="col-span-2 my-2">
+        {loading
+          ? 'Loading items…'
+          : error
+            ? `Error: ${error}`
+            : `Showing ${filtered.length} items`}
+      </div>
 
       {/* Results */}
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {/* Status */}
-        <div className="col-span-2 mb-2">
-          {loading
-            ? 'Loading items…'
-            : error
-              ? `Error: ${error}`
-              : `Showing ${filtered.length} items`}
-        </div>
-
+      <section className="grid grid-cols-1 gap-3 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {filtered && filtered.length > 0 ? (
           filtered
             .slice(0, 200)
-            .map((item: any, index: number) =>
+            .map((item: any) =>
               item.item_type !== 'Misc' ? <ItemCard item={item} isWeapon={false} /> : null
             )
         ) : (

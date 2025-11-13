@@ -178,13 +178,13 @@ export default function ArcExplorer() {
     <div>
       {/* Search Control */}
       <section className="mb-6">
-        <label className="block">
+        <label className="mx-auto block w-full max-w-md">
           <span className="block text-xs font-semibold text-dark">Search</span>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             type="search"
-            placeholder="Type to filter ARCs…"
+            placeholder="Search ARCs…"
             className="mt-1 w-full max-w-md rounded-xl border border-light bg-light px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue"
           />
         </label>

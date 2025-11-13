@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
+import DataDisclaimer from '@components/DataDisclaimer.astro'
 const { title = 'ARC Raiders Explorer', description = '' } = Astro.props
 ---
 
@@ -22,7 +23,9 @@ const { title = 'ARC Raiders Explorer', description = '' } = Astro.props
   </head>
   <body class="min-h-screen antialiased">
     <Header />
-    <main class="container py-6 md:py-10">
+    <main class="pl-64 pr-4 pt-6">
+      <DataDisclaimer />
+      <div class="mb-2"></div>
       <slot />
     </main>
     <Footer />

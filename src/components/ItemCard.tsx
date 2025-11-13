@@ -17,7 +17,7 @@ const ItemCard = ({ item, isWeapon = false }: { item: any; isWeapon?: boolean })
   const subtitle = item.rarity || item.type || item.category || item.tier || ''
   const subcategory = item.subcategory || item.item_type || ''
   const description = item.description || item.flavor_text || item.notes || ''
-  const icon = currentLevel?.icon || item.icon || item.image || ''
+  const icon = currentLevel?.icon || item.icon || item.image || '/images/noimage.png'
   const value = currentLevel?.value || item.value || item.stat_block?.value || null
   const workbench = currentLevel?.workbench || item.workbench || null
   const ammoType = item.ammoType || item.ammo_type || null
@@ -135,7 +135,7 @@ const ItemCard = ({ item, isWeapon = false }: { item: any; isWeapon?: boolean })
   }
 
   return (
-    <article className="w-full overflow-hidden rounded-xl bg-light p-4">
+    <article className="relative w-full overflow-hidden rounded-xl bg-light p-4 pb-16">
       <header className="flex items-start justify-between gap-3">
         <div className="flex gap-2">
           <div className={`item-icon-wrap h-16 w-16 shrink-0 ${String(subtitle).toLowerCase()}`}>
@@ -339,7 +339,7 @@ const ItemCard = ({ item, isWeapon = false }: { item: any; isWeapon?: boolean })
 
         return (
           <footer
-            className={`-mx-4 -mb-4 mt-2 grid ${gridCols} items-center gap-2 divide-x divide-light bg-[#CDC2B0]`}
+            className={`absolute bottom-0 left-0 right-0 -mx-4 mt-2 grid ${gridCols} items-center gap-2 divide-x divide-light bg-[#CDC2B0]`}
           >
             {weight ? (
               <span

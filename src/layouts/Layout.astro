@@ -11,7 +11,8 @@ const { title = 'ARC Raiders Explorer', description = '' } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href="/favicon-light.svg" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon-dark.svg" media="(prefers-color-scheme: light)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

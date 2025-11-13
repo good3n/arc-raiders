@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import ItemCard from './ItemCard'
+import FilterSidebar from './FilterSidebar'
 
 // Cache configuration
 const CACHE_VERSION = 'v1'
@@ -243,122 +244,40 @@ export default function WeaponExplorer() {
     return filteredData
   }, [data, query, rarityFilter, ammoTypeFilter, subcategoryFilter])
 
+  // Prepare filter groups for the sidebar
+  const filterGroups = [
+    {
+      title: 'Subcategory',
+      options: subcategories,
+      selected: subcategoryFilter,
+      onSelect: setSubcategoryFilter,
+      type: 'buttons' as const,
+    },
+    {
+      title: 'Ammo Type',
+      options: ammoTypes,
+      selected: ammoTypeFilter,
+      onSelect: (value: string) => setAmmoTypeFilter(value.toLowerCase()),
+      type: 'buttons' as const,
+    },
+    {
+      title: 'Rarity',
+      options: rarities,
+      selected: rarityFilter,
+      onSelect: setRarityFilter,
+      type: 'tags' as const,
+    },
+  ].filter((group) => group.options.length > 0)
+
   return (
     <div className="grid grid-cols-[300px_1fr] gap-10">
-      <aside className="scrollbar-hide sticky top-28 h-[calc(100vh-7rem)] overflow-y-auto pb-10">
-        {/* Search Control */}
-        <section className="mb-6">
-          <h3 className="mb-2 text-sm font-semibold">Search</h3>
-          <label className="block">
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              type="search"
-              placeholder="Type to filter weapons…"
-              className="border-gray-300 w-full rounded-lg border px-3 py-2"
-            />
-          </label>
-        </section>
-
-        {/* Subcategory Filters */}
-        {subcategories.length > 0 && (
-          <div className="mb-6">
-            <h3 className="mb-2 text-sm font-semibold">Subcategory</h3>
-            <div className="flex flex-wrap gap-1">
-              <button
-                onClick={() => setSubcategoryFilter('all')}
-                className={classNames(
-                  'rounded-md px-3 py-1.5 text-left font-medium transition-all',
-                  subcategoryFilter === 'all'
-                    ? 'bg-blue text-dark'
-                    : 'bg-light text-dark hover:bg-blue'
-                )}
-              >
-                All
-              </button>
-              {subcategories.map((subcategory) => (
-                <button
-                  key={subcategory}
-                  onClick={() => setSubcategoryFilter(subcategory)}
-                  className={classNames(
-                    'rounded-md px-3 py-1.5 text-left font-medium transition-all',
-                    subcategoryFilter === subcategory
-                      ? 'bg-blue text-dark'
-                      : 'bg-light text-dark hover:bg-blue'
-                  )}
-                >
-                  {subcategory}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Ammo Type Filters */}
-        {ammoTypes.length > 0 && (
-          <div className="mb-6">
-            <h3 className="mb-2 text-sm font-semibold">Ammo Type</h3>
-            <div className="flex flex-wrap gap-1">
-              <button
-                onClick={() => setAmmoTypeFilter('all')}
-                className={classNames(
-                  'rounded-md px-3 py-1.5 font-medium transition-all',
-                  ammoTypeFilter === 'all'
-                    ? 'bg-blue text-dark'
-                    : 'bg-light text-dark hover:bg-blue'
-                )}
-              >
-                All Types
-              </button>
-              {ammoTypes.map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setAmmoTypeFilter(type.toLowerCase())}
-                  className={classNames(
-                    'rounded-md px-3 py-1.5 font-medium transition-all',
-                    ammoTypeFilter === type.toLowerCase()
-                      ? 'bg-blue text-dark'
-                      : 'bg-light text-dark hover:bg-blue'
-                  )}
-                >
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Rarity Filters */}
-        {rarities.length > 0 && (
-          <div>
-            <h3 className="mb-2 text-sm font-semibold">Rarity</h3>
-            <div className="flex flex-col gap-1">
-              <button
-                onClick={() => setRarityFilter('all')}
-                className={classNames(
-                  'item-tag rounded-md px-3 py-1.5 text-left text-sm font-medium transition-all',
-                  rarityFilter === 'all' ? 'bg-blue text-dark' : 'bg-light text-dark hover:bg-blue'
-                )}
-              >
-                All Rarities
-              </button>
-              {rarities.map((rarity) => (
-                <button
-                  key={rarity}
-                  onClick={() => setRarityFilter(rarity)}
-                  className={classNames(
-                    'item-tag rounded-md px-3 py-1.5 text-left text-sm font-medium transition-all',
-                    rarity.toLowerCase(),
-                    rarityFilter === rarity ? 'opacity-100' : 'opacity-60 hover:opacity-100'
-                  )}
-                >
-                  {rarity}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </aside>
+      <FilterSidebar
+        searchValue={query}
+        onSearchChange={setQuery}
+        searchPlaceholder="Type to filter weapons…"
+        filterGroups={filterGroups}
+        className="scrollbar-hide h-[calc(100vh-7rem)] overflow-y-auto pb-10"
+      />
 
       {/* Results */}
       <section className="relative flex flex-col items-start items-center gap-3 pt-10">

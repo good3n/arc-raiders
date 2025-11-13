@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import ItemCard from './ItemCard'
+import FilterSidebar from './FilterSidebar'
 
 type ItemTabKey = 'all' | string
 
@@ -264,83 +265,36 @@ export default function ItemExplorer() {
     })
   }, [data, query, itemTypeTab, rarityFilter])
 
+  // Prepare filter groups for the sidebar
+  const filterGroups = [
+    {
+      title: 'Item Type',
+      options: itemTypes,
+      selected: itemTypeTab,
+      onSelect: setItemTypeTab,
+      type: 'buttons' as const,
+    },
+    {
+      title: 'Rarity',
+      options: rarities,
+      selected: rarityFilter,
+      onSelect: setRarityFilter,
+      type: 'tags' as const,
+    },
+  ].filter((group) => group.options.length > 0)
+
   return (
     <div className="grid grid-cols-[280px_1fr] gap-4">
-      <aside className="sticky top-28 h-72">
-        {/* Search Control */}
-        <section className="mb-6">
-          <label className="block">
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              type="search"
-              placeholder="Type to filter items…"
-            />
-          </label>
-        </section>
-
-        {/* Item Type Tabs */}
-        <h3 className="mb-2 text-sm font-semibold">Item Type</h3>
-        {itemTypes.length > 0 && (
-          <div className="mb-4 flex flex-wrap gap-2">
-            <button
-              onClick={() => setItemTypeTab('all')}
-              className={classNames(
-                'rounded-md px-3 py-1.5 text-xs font-medium transition-all',
-                itemTypeTab === 'all' ? 'bg-blue text-dark' : 'bg-light text-dark hover:bg-blue'
-              )}
-            >
-              All
-            </button>
-            {itemTypes.map((type) => (
-              <button
-                key={type}
-                onClick={() => setItemTypeTab(type)}
-                className={classNames(
-                  'rounded-md px-3 py-1.5 text-xs font-medium transition-all',
-                  itemTypeTab === type ? 'bg-blue text-dark' : 'bg-light text-dark hover:bg-blue'
-                )}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Rarity Filters */}
-        {rarities.length > 0 && (
-          <div className="mt-6">
-            <h3 className="mb-2 text-sm font-semibold">Rarity</h3>
-            <div className="flex flex-col gap-1">
-              <button
-                onClick={() => setRarityFilter('all')}
-                className={classNames(
-                  'item-tag rounded-md px-3 py-1.5 text-left text-xs font-medium transition-all',
-                  rarityFilter === 'all' ? 'bg-blue text-dark' : 'bg-light text-dark hover:bg-blue'
-                )}
-              >
-                All Rarities
-              </button>
-              {rarities.map((rarity) => (
-                <button
-                  key={rarity}
-                  onClick={() => setRarityFilter(rarity)}
-                  className={classNames(
-                    'item-tag rounded-md px-3 py-1.5 text-left text-xs font-medium transition-all',
-                    rarity.toLowerCase(),
-                    rarityFilter === rarity ? 'opacity-100' : 'opacity-60 hover:opacity-100'
-                  )}
-                >
-                  {rarity}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </aside>
+      <FilterSidebar
+        searchValue={query}
+        onSearchChange={setQuery}
+        searchPlaceholder="Type to filter items…"
+        filterGroups={filterGroups}
+        className="h-72"
+      />
 
       {/* Results */}
-      <section className="grid grid-cols-1 items-start gap-3 md:grid-cols-2">
+      <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {/* Status */}
         <div className="col-span-2 mb-2">
           {loading
@@ -351,13 +305,11 @@ export default function ItemExplorer() {
         </div>
 
         {filtered && filtered.length > 0 ? (
-          filtered.slice(0, 200).map((item: any, index: number) =>
-            item.item_type !== 'Misc' ? (
-              <span key={item.id || index} className="inline-block w-full">
-                <ItemCard item={item} isWeapon={false} />
-              </span>
-            ) : null
-          )
+          filtered
+            .slice(0, 200)
+            .map((item: any, index: number) =>
+              item.item_type !== 'Misc' ? <ItemCard item={item} isWeapon={false} /> : null
+            )
         ) : (
           <div className="text-sm">No items found.</div>
         )}

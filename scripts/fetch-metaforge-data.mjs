@@ -66,7 +66,9 @@ function processWeapons(weapons) {
 
   // Group weapons by base name
   weapons.forEach((weapon) => {
-    const baseName = weapon.name.replace(/\s+(I|II|III|IV|V)$/i, '').trim()
+    // Trim the name first to handle trailing spaces
+    const trimmedName = weapon.name.trim()
+    const baseName = trimmedName.replace(/\s+(I|II|III|IV|V)$/i, '').trim()
 
     if (!weaponGroups[baseName]) {
       weaponGroups[baseName] = []
@@ -81,8 +83,8 @@ function processWeapons(weapons) {
   Object.entries(weaponGroups).forEach(([baseName, variants]) => {
     // Sort variants by level
     variants.sort((a, b) => {
-      const levelA = a.name.match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
-      const levelB = b.name.match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
+      const levelA = a.name.trim().match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
+      const levelB = b.name.trim().match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
       const romanToNumber = { I: 1, II: 2, III: 3, IV: 4, V: 5 }
       return (romanToNumber[levelA] || 1) - (romanToNumber[levelB] || 1)
     })
@@ -116,7 +118,7 @@ function processWeapons(weapons) {
 
     // Process each level
     variants.forEach((variant, levelIndex) => {
-      const level = variant.name.match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
+      const level = variant.name.trim().match(/(I|II|III|IV|V)$/i)?.[0] || 'I'
       const stats = variant.stat_block || {}
 
       // Track all modifiers for this level
@@ -219,9 +221,11 @@ async function fetchAll(endpoint) {
 
       if (arr.length === 0) break
 
-      // Filter out Misc items immediately for the items endpoint
+      // Filter out Misc items and Weapons immediately for the items endpoint
       if (endpoint === 'items') {
-        const filteredArr = arr.filter((item) => item.item_type !== 'Misc')
+        const filteredArr = arr.filter(
+          (item) => item.item_type !== 'Misc' && item.item_type !== 'Weapon'
+        )
         all = all.concat(filteredArr)
         console.log(
           `→ Page ${page}: ${arr.length} records (${filteredArr.length} after filtering, total ${all.length})`
@@ -254,7 +258,7 @@ async function fetchAll(endpoint) {
 
   // Final stats for items endpoint
   if (endpoint === 'items') {
-    console.log(`✅ Filtered out all Misc items from ${endpoint}`)
+    console.log(`✅ Filtered out all Misc items and Weapons from ${endpoint}`)
   }
 
   // Save to file with pretty formatting
@@ -325,21 +329,72 @@ async function fetchMapData() {
 console.log('🚀 Starting MetaForge data fetch...')
 console.log(`📁 Output directory: ${OUTPUT_DIR}`)
 
-// Fetch regular endpoints
-let allItems = []
-for (const ep of ENDPOINTS) {
-  console.log(`\n📦 Fetching endpoint: ${ep}`)
-  const data = await fetchAll(ep)
+// First, fetch ALL items (including weapons) from the API
+console.log('\n📦 Fetching ALL items from API (including weapons)...')
+const allItemsRaw = []
+let page = 1
 
-  // Store items data for weapon processing
-  if (ep === 'items') {
-    allItems = data
+while (true) {
+  const url = `${BASE}/items?page=${page}`
+  console.log('Fetching', url)
+
+  try {
+    const res = await fetch(url)
+
+    if (res.status === 429) {
+      console.warn('⏳ Rate limited, waiting 10s then retrying...')
+      await sleep(10_000)
+      continue
+    }
+
+    if (!res.ok) {
+      throw new Error(`Failed ${res.status} on ${url}`)
+    }
+
+    const data = await res.json()
+    const arr = Array.isArray(data) ? data : data?.data || []
+
+    if (arr.length === 0) break
+
+    // Collect ALL items first (no filtering)
+    allItemsRaw.push(...arr)
+    console.log(`→ Page ${page}: ${arr.length} records (total ${allItemsRaw.length})`)
+
+    if (arr.length < 50) break
+    page++
+
+    await sleep(1500)
+  } catch (err) {
+    console.error('❌ Error on page', page, ':', err.message)
+    if (allItemsRaw.length > 0) {
+      console.warn(`⚠️  Proceeding with partial data (${allItemsRaw.length} records)`)
+      break
+    }
+    await sleep(5000)
   }
 }
 
+// Now separate weapons from other items
+const weapons = allItemsRaw.filter((item) => item.item_type === 'Weapon')
+const nonWeaponItems = allItemsRaw.filter(
+  (item) => item.item_type !== 'Weapon' && item.item_type !== 'Misc'
+)
+
+console.log(`\n📊 Total items fetched: ${allItemsRaw.length}`)
+console.log(`   - Weapons: ${weapons.length}`)
+console.log(`   - Non-weapon items (excluding Misc): ${nonWeaponItems.length}`)
+
+// Save non-weapon items to items.json
+const itemsPath = path.join(OUTPUT_DIR, 'items.json')
+fs.writeFileSync(itemsPath, JSON.stringify(nonWeaponItems, null, 2))
+console.log(`✅ Saved ${nonWeaponItems.length} non-weapon items to ${itemsPath}`)
+
+const itemsMinPath = path.join(OUTPUT_DIR, 'items.min.json')
+fs.writeFileSync(itemsMinPath, JSON.stringify(nonWeaponItems))
+console.log(`✅ Saved minified version to ${itemsMinPath}`)
+
 // Process weapons separately
 console.log('\n⚔️ Processing weapons data...')
-const weapons = allItems.filter((item) => item.item_type === 'Weapon')
 const processedWeapons = processWeapons(weapons)
 
 // Save processed weapons
@@ -351,6 +406,12 @@ console.log(`✅ Saved ${processedWeapons.length} weapon groups to ${weaponsPath
 const weaponsMinPath = path.join(OUTPUT_DIR, 'weapons.min.json')
 fs.writeFileSync(weaponsMinPath, JSON.stringify(processedWeapons))
 console.log(`✅ Saved minified weapons to ${weaponsMinPath}`)
+
+// Fetch other endpoints (arcs, quests)
+for (const ep of ['arcs', 'quests']) {
+  console.log(`\n📦 Fetching endpoint: ${ep}`)
+  await fetchAll(ep)
+}
 
 // Fetch map data
 console.log('\n📍 Starting map data fetch...')
@@ -364,6 +425,7 @@ const manifest = {
   endpoints: ENDPOINTS,
   maps: MAPS,
   weaponCount: processedWeapons.length,
+  itemCount: nonWeaponItems.length,
   version: '1.0.0',
 }
 

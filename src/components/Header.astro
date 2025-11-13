@@ -1,49 +1,34 @@
 ---
-import svgLogo from '@assets/images/svg/logo.svg';
-const pathname = Astro.url.pathname;
+import svgLogo from '@assets/images/svg/logo.svg'
+const pathname = Astro.url.pathname
 
 // Helper function to get nav link classes
 const getLinkClasses = (href: string) => {
-  const isActive = pathname.startsWith(href.replace(/\/$/, ''));
-  return `transition-colors ${isActive ? 'text-orange' : 'text-light hover:text-yellow'}`;
-};
+  const isActive = pathname.startsWith(href.replace(/\/$/, ''))
+  return `transition-colors ${isActive ? 'text-orange' : 'text-light hover:text-yellow'}`
+}
 ---
 
 <header class="sticky top-0 z-10 bg-[#130918]/60 backdrop-blur">
-  <div class="mx-auto max-w-[1400px] px-4 py-4 flex items-center justify-between">
+  <div class="container flex items-center justify-between py-4">
     <a href="/" class="flex items-center gap-3">
-      <img src={svgLogo.src} alt="Logo" class="w-20 block" />
-      <div>
-        <h1 class="text-5xl font-black">
-          <span class="italic">A</span>RCIndex.app
-        </h1>
-      </div>
+      <img src={svgLogo.src} alt="Logo" class="block w-72" />
     </a>
-    <ul class="flex items-center gap-4 font-semibold text-xl">
+    <ul class="flex items-center gap-4 text-xl font-semibold">
       <li>
-        <a href="/items/" class={getLinkClasses('/items/')}>
-          Items
-        </a>
+        <a href="/items/" class={getLinkClasses('/items/')}> Items </a>
       </li>
       <li>
-        <a href="/weapons/" class={getLinkClasses('/weapons/')}>
-          Weapons
-        </a>
+        <a href="/weapons/" class={getLinkClasses('/weapons/')}> Weapons </a>
       </li>
       <li class="hidden">
-        <a href="/quests/" class={getLinkClasses('/quests/')}>
-          Quests
-        </a>
+        <a href="/quests/" class={getLinkClasses('/quests/')}> Quests </a>
       </li>
       <li class="hidden">
-        <a href="/traders/" class={getLinkClasses('/traders/')}>
-          Traders
-        </a>
+        <a href="/traders/" class={getLinkClasses('/traders/')}> Traders </a>
       </li>
       <li class="hidden">
-        <a href="/maps/" class={getLinkClasses('/maps/')}>
-          Maps
-        </a>
+        <a href="/maps/" class={getLinkClasses('/maps/')}> Maps </a>
       </li>
       <li>
         <a href="/arcs/" class={getLinkClasses('/arcs/')}>
@@ -52,8 +37,11 @@ const getLinkClasses = (href: string) => {
       </li>
     </ul>
     <a
-      class="hidden items-center gap-2 rounded-2xl px-4 py-2 shadow-sm hover:shadow md:text-sm text-xs border border-light"
-      href="https://metaforge.app/arc-raiders/api" target="_blank" rel="noreferrer">API Docs ↗
+      class="hidden items-center gap-2 rounded-2xl border border-light px-4 py-2 text-xs shadow-sm hover:shadow md:text-sm"
+      href="https://metaforge.app/arc-raiders/api"
+      target="_blank"
+      rel="noreferrer"
+      >API Docs ↗
     </a>
   </div>
 </header>

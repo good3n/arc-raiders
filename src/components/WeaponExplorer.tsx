@@ -18,7 +18,7 @@ export default function WeaponExplorer() {
   const [ammoTypeFilter, setAmmoTypeFilter] = useState<string>('all')
   const [subcategoryFilter, setSubcategoryFilter] = useState<string>('all')
 
-  const endpoint = '/data/weapons.json'
+  const endpoint = '/data/weapons.min.json'
 
   // Load data with caching
   useEffect(() => {
@@ -196,6 +196,10 @@ export default function WeaponExplorer() {
   // Filter data based on search query and filters
   const filtered = useMemo(() => {
     let filteredData = data
+
+    filteredData = filteredData.filter(
+      (weapon) => weapon.description && weapon.description.trim() !== ''
+    )
 
     // Filter by subcategory
     if (subcategoryFilter !== 'all') {

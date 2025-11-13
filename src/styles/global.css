@@ -4,50 +4,76 @@
 
 @layer base {
   body {
-    @apply text-[#ece2d0] bg-siteBackground bg-fixed bg-center bg-cover;
+    @apply bg-siteBackground bg-cover bg-fixed bg-center text-[#ece2d0];
   }
 
   input {
-    @apply w-full max-w-md rounded-xl border border-light bg-[#ece2d0] text-[#130918] px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow placeholder:text-dark;
+    @apply w-full max-w-md rounded-xl border border-light bg-[#ece2d0] px-3 py-2 text-sm text-[#130918] shadow-sm placeholder:text-dark focus:outline-none focus:ring-2 focus:ring-yellow;
   }
 
   .item-icon-wrap {
-    @apply border-2 rounded-md;
+    @apply rounded-md border-2;
 
     &.common {
-      @apply border-itemGray/50 bg-itemGray/10;
+      @apply border-itemGray/50;
+      background: linear-gradient(
+        to right,
+        rgba(146, 146, 146, 0.5) 0%,
+        rgba(146, 146, 146, 0.125) 100%
+      );
     }
     &.uncommon {
-      @apply border-itemGreen/50 bg-itemGreen/10;
+      @apply border-itemGreen/50;
+      background: linear-gradient(
+        to right,
+        rgba(100, 181, 120, 0.5) 0%,
+        rgba(100, 181, 120, 0.125) 100%
+      );
+      border: 1px solid rgb(100, 181, 120);
     }
     &.rare {
-      @apply border-itemBlue/50 bg-itemBlue/10;
+      @apply border-itemBlue/50;
+      background: linear-gradient(
+        to right,
+        rgba(79, 168, 219, 0.5) 0%,
+        rgba(79, 168, 219, 0.125) 100%
+      );
     }
     &.epic {
-      @apply border-itemPurple/50 bg-itemPurple/10;
+      @apply border-itemPurple/50;
+      background: linear-gradient(
+        to right,
+        rgba(182, 73, 154, 0.5) 0%,
+        rgba(182, 73, 154, 0.125) 100%
+      );
     }
     &.legendary {
-      @apply border-itemOrange/50 bg-itemOrange/10;
+      @apply border-itemOrange/50;
+      background: linear-gradient(
+        to right,
+        rgba(255, 158, 0, 0.19) 0%,
+        rgba(255, 158, 0, 0.063) 100%
+      );
     }
   }
 
   .item-tag {
-    @apply px-3 pt-[2px] pb-1 rounded text-xs font-semibold uppercase tracking-wide border inline-block;
+    @apply inline-block rounded border px-3 pb-1 pt-[2px] text-xs font-semibold uppercase tracking-wide;
 
     &.common {
-      @apply bg-itemGray/25 text-[#d1d5db] border-itemGray/50;
+      @apply border-itemGray/50 bg-itemGray/25 text-[#d1d5db];
     }
     &.uncommon {
-      @apply bg-itemGreen/25 text-[#86efac] border-itemGreen/50;
+      @apply border-itemGreen/50 bg-itemGreen/25 text-[#86efac];
     }
     &.rare {
-      @apply bg-itemBlue/25 text-[#93c5fd] border-itemBlue/50;
+      @apply border-itemBlue/50 bg-itemBlue/25 text-[#93c5fd];
     }
     &.epic {
-      @apply bg-itemPurple/25 text-[#d8b4fe] border-itemPurple/50;
+      @apply border-itemPurple/50 bg-itemPurple/25 text-[#d8b4fe];
     }
     &.legendary {
-      @apply bg-itemOrange/25 text-[#fdba74] border-itemOrange/50;
+      @apply border-itemOrange/50 bg-itemOrange/25 text-[#fdba74];
     }
   }
 

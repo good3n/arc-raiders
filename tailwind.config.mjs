@@ -17,6 +17,14 @@ export default {
       itemPurple: '#9333ea',
       itemOrange: '#ea580c',
     },
+    container: {
+      center: true,
+      padding: '16px',
+      screens: {
+        md: '100%',
+        lg: '1300px',
+      },
+    },
     extend: {
       backgroundImage: {
         siteBackground: "url('/src/assets/images/background.jpg')",

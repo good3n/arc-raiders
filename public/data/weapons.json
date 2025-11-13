@@ -168,6 +168,63 @@
     ]
   },
   {
+    "id": "aphelion-rifle",
+    "baseName": "Aphelion Rifle",
+    "description": "",
+    "icon": "",
+    "rarity": "Legendary",
+    "subcategory": "",
+    "ammoType": "",
+    "baseStats": {
+      "damage": 0,
+      "fireRate": 0,
+      "range": 0,
+      "stability": 0,
+      "agility": 0,
+      "stealth": 0,
+      "magazineSize": 0,
+      "weight": 0,
+      "firingMode": null,
+      "damagePerSecond": 0
+    },
+    "levels": [
+      {
+        "level": "I",
+        "levelNumber": 1,
+        "id": "aphelion-rifle",
+        "value": 0,
+        "workbench": null,
+        "icon": "",
+        "stats": {
+          "damage": 0,
+          "fireRate": 0,
+          "range": 0,
+          "stability": 0,
+          "agility": 0,
+          "stealth": 0,
+          "magazineSize": 0,
+          "weight": 0,
+          "damagePerSecond": 0
+        },
+        "modifiers": {},
+        "activeModifiers": {
+          "increasedFireRate": 0,
+          "reducedReloadTime": 0,
+          "increasedBulletVelocity": 0,
+          "reducedDurabilityBurnRate": 0,
+          "reducedMaxShotDispersion": 0,
+          "reducedPerShotDispersion": 0,
+          "reducedDispersionRecoveryTime": 0,
+          "reducedRecoilRecoveryTime": 0,
+          "increasedRecoilRecoveryTime": 0
+        },
+        "hasDirectOverrides": {
+          "fireRate": false
+        }
+      }
+    ]
+  },
+  {
     "id": "arpeggio",
     "baseName": "Arpeggio",
     "description": "Has decent damage output and accuracy.",

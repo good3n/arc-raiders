@@ -376,13 +376,26 @@ while (true) {
 
 // Now separate weapons from other items
 const weapons = allItemsRaw.filter((item) => item.item_type === 'Weapon')
-const nonWeaponItems = allItemsRaw.filter(
-  (item) => item.item_type !== 'Weapon' && item.item_type !== 'Misc'
-)
+const nonWeaponItems = allItemsRaw
+  .filter((item) => item.item_type !== 'Weapon' && item.item_type !== 'Misc')
+  .map((item) => {
+    // Set blueprint value to 5000
+    if (item.item_type === 'Blueprint') {
+      return {
+        ...item,
+        value: 5000,
+      }
+    }
+    return item
+  })
 
 console.log(`\n📊 Total items fetched: ${allItemsRaw.length}`)
 console.log(`   - Weapons: ${weapons.length}`)
 console.log(`   - Non-weapon items (excluding Misc): ${nonWeaponItems.length}`)
+
+// Count blueprints for logging
+const blueprintCount = nonWeaponItems.filter((item) => item.item_type === 'Blueprint').length
+console.log(`   - Blueprints (value set to 5000): ${blueprintCount}`)
 
 // Save non-weapon items to items.json
 const itemsPath = path.join(OUTPUT_DIR, 'items.json')

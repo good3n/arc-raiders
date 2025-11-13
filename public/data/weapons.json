@@ -1413,33 +1413,10 @@
         "hasDirectOverrides": {
           "fireRate": false
         }
-      }
-    ]
-  },
-  {
-    "id": "hullcracker-iv",
-    "baseName": "Hullcracker IV",
-    "description": "Fires explosive projectiles that only detonate when hitting ARC",
-    "icon": "https://cdn.metaforge.app/arc-raiders/icons/hullcracker-iv.webp",
-    "rarity": "Epic",
-    "subcategory": "Special",
-    "ammoType": "launcher",
-    "baseStats": {
-      "damage": 100,
-      "fireRate": 20.3,
-      "range": 38.9,
-      "stability": 97.2,
-      "agility": 67.9,
-      "stealth": 1,
-      "magazineSize": 5,
-      "weight": 7,
-      "firingMode": null,
-      "damagePerSecond": 0
-    },
-    "levels": [
+      },
       {
-        "level": "I",
-        "levelNumber": 1,
+        "level": "IV",
+        "levelNumber": 4,
         "id": "hullcracker-iv",
         "value": 22000,
         "workbench": "Gunsmith III",

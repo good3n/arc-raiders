@@ -47,11 +47,11 @@
   {
     "id": "matriarch",
     "name": "Matriarch",
-    "description": "",
+    "description": "One of the latest Arcs to visit us Topside. This ARC shoots rockets, gas and a big shield which you need to be inside of to shoot it.",
     "icon": "https://cdn.metaforge.app/arc-raiders/icons/matriarch.webp",
-    "image": "",
+    "image": "https://cdn.metaforge.app/arc-raiders/images/matriarch.webp",
     "created_at": "2025-11-12T19:34:45.361835+00:00",
-    "updated_at": "2025-11-12T19:50:08.811396+00:00"
+    "updated_at": "2025-11-13T20:20:00.462183+00:00"
   },
   {
     "id": "pop",
@@ -92,11 +92,11 @@
   {
     "id": "shredder",
     "name": "Shredder",
-    "description": "",
+    "description": "When this relentless lump of menace was first encountered at the Stella Montis facility, it left behind a trail of downed Raiders. It was dubbed the \"Shredder\" by what few Raiders managed to get back to safety; a name that wasn't so much clever as it was painfully literal.",
     "icon": "https://cdn.metaforge.app/arc-raiders/icons/shredder.webp",
-    "image": "",
+    "image": "https://cdn.metaforge.app/arc-raiders/images/shredder.webp",
     "created_at": "2025-11-12T19:35:03.207409+00:00",
-    "updated_at": "2025-11-12T19:41:28.021532+00:00"
+    "updated_at": "2025-11-14T18:52:50.170349+00:00"
   },
   {
     "id": "snitch",

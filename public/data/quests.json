@@ -958,6 +958,47 @@
     ]
   },
   {
+    "id": "cold-storage",
+    "name": "Cold Storage",
+    "objectives": [
+      "In one round",
+      "Search any J Kozma Ventures Container"
+    ],
+    "xp": 0,
+    "granted_items": [],
+    "created_at": "2025-11-14T11:43:45.943896+00:00",
+    "updated_at": "2025-11-14T11:43:45.943896+00:00",
+    "locations": [],
+    "marker_category": null,
+    "required_items": [],
+    "rewards": [
+      {
+        "id": "5c52d95e-a610-4519-a4f4-ffa19b14d425",
+        "item": {
+          "id": "raider-hatch-key",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/raider-hatch-key.webp",
+          "name": "Raider Hatch Key",
+          "rarity": "Rare",
+          "item_type": "Key"
+        },
+        "item_id": "raider-hatch-key",
+        "quantity": "1"
+      },
+      {
+        "id": "f0ef6dc0-0d34-41ab-880c-dcc042d3b184",
+        "item": {
+          "id": "gas-mine",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/gas-mine.webp",
+          "name": "Gas Mine",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        },
+        "item_id": "gas-mine",
+        "quantity": "3"
+      }
+    ]
+  },
+  {
     "id": "communication-hideout",
     "name": "Communication Hideout",
     "objectives": [
@@ -1722,6 +1763,47 @@
     ]
   },
   {
+    "id": "in-my-image",
+    "name": "In My Image",
+    "objectives": [
+      "Deploy into Stella Montis",
+      "Find and search 3 Androids"
+    ],
+    "xp": 0,
+    "granted_items": [],
+    "created_at": "2025-11-14T11:42:22.128425+00:00",
+    "updated_at": "2025-11-14T11:42:22.128425+00:00",
+    "locations": [],
+    "marker_category": null,
+    "required_items": [],
+    "rewards": [
+      {
+        "id": "594e3f22-b8e4-45d7-a1a3-c49763b50995",
+        "item": {
+          "id": "looting-mk-2",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/looting-mk-2.webp",
+          "name": "Looting Mk. 2",
+          "rarity": "Rare",
+          "item_type": "Augment"
+        },
+        "item_id": "looting-mk-2",
+        "quantity": "1"
+      },
+      {
+        "id": "f7342d08-9ee4-45bd-88c3-9bf743364a12",
+        "item": {
+          "id": "green-light-stick",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/green-light-stick.webp",
+          "name": "Green Light Stick",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        },
+        "item_id": "green-light-stick",
+        "quantity": "5"
+      }
+    ]
+  },
+  {
     "id": "into-the-fray",
     "name": "Into the Fray",
     "objectives": [
@@ -2191,114 +2273,6 @@
         },
         "item_id": "raider-hatch-key",
         "quantity": "1"
-      }
-    ]
-  },
-  {
-    "id": "off-the-raider",
-    "name": "Off The Radar",
-    "objectives": [
-      "Visit a Field Depot (In one Round)",
-      "Repair the antenna on the roof of the Field Depot (In one Round)"
-    ],
-    "xp": 0,
-    "granted_items": [
-      {
-        "id": "ffedfde8-8fe1-497e-847c-835b8341a8d1",
-        "item": {
-          "id": "remote-raider-flare",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/remote-raider-flare.webp",
-          "name": "Remote Raider Flare",
-          "rarity": "Common",
-          "item_type": "Quick Use"
-        },
-        "item_id": "remote-raider-flare",
-        "quantity": 2
-      }
-    ],
-    "created_at": "2025-10-17T15:40:35.877091+00:00",
-    "updated_at": "2025-10-17T15:40:35.877091+00:00",
-    "locations": [],
-    "marker_category": "field_depot",
-    "required_items": [],
-    "rewards": [
-      {
-        "id": "6c31d65c-2b77-4839-84d4-eab49a257842",
-        "item": {
-          "id": "defibrillator",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/defibrillator.webp",
-          "name": "Defibrillator",
-          "rarity": "Rare",
-          "item_type": "Quick Use"
-        },
-        "item_id": "defibrillator",
-        "quantity": "2"
-      },
-      {
-        "id": "22ca8763-fcc7-43ec-bf52-90223d896087",
-        "item": {
-          "id": "black-and-white-origin-color",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/black-and-white-origin-color.webp",
-          "name": "Black & White (Origin Color)",
-          "rarity": "Common",
-          "item_type": "Misc"
-        },
-        "item_id": "black-and-white-origin-color",
-        "quantity": "1"
-      }
-    ]
-  },
-  {
-    "id": "our-presence-up-there",
-    "name": "Our Presence Up There",
-    "objectives": [
-      "In one round: Visit the Pattern House in The Dam",
-      "Find and interact with the Power Switch",
-      "Complete the antenna installation on the roof"
-    ],
-    "xp": 0,
-    "granted_items": [],
-    "created_at": "2025-10-07T14:15:03.441314+00:00",
-    "updated_at": "2025-10-07T14:15:03.441314+00:00",
-    "locations": [],
-    "marker_category": null,
-    "required_items": [],
-    "rewards": [
-      {
-        "id": "5cb050bb-ba2e-40ed-8e36-cf4b3cabbefc",
-        "item": {
-          "id": "buried-city-town-hall-key",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/buried-city-town-hall-key.webp",
-          "name": "Buried City Town Hall Key",
-          "rarity": "Epic",
-          "item_type": "Key"
-        },
-        "item_id": "buried-city-town-hall-key",
-        "quantity": "1"
-      },
-      {
-        "id": "4100b5d2-d98b-4ce9-9aaa-db7606c7b1c9",
-        "item": {
-          "id": "raider-hatch-key",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/raider-hatch-key.webp",
-          "name": "Raider Hatch Key",
-          "rarity": "Rare",
-          "item_type": "Key"
-        },
-        "item_id": "raider-hatch-key",
-        "quantity": "1"
-      },
-      {
-        "id": "42ced3e6-5164-4adc-80ba-c0c4b942e47a",
-        "item": {
-          "id": "jolt-mine",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/jolt-mine.webp",
-          "name": "Jolt Mine",
-          "rarity": "Rare",
-          "item_type": "Quick Use"
-        },
-        "item_id": "jolt-mine",
-        "quantity": "3"
       }
     ]
   }

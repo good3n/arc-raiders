@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-13T17:07:20.392Z",
+  "lastUpdated": "2025-11-15T21:22:32.434Z",
   "endpoints": [
     "items",
     "arcs",
@@ -12,6 +12,6 @@
     "Blue Gate"
   ],
   "weaponCount": 21,
-  "itemCount": 398,
+  "itemCount": 419,
   "version": "1.0.0"
 }
